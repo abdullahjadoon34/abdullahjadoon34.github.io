@@ -1,15 +1,649 @@
 <!doctype html>
 <html lang="en">
 <head>
+  <!--
+    Abdullah Jadoon — Command Center Portfolio (FULL)
+    Single-file, production-ready HTML
+    Aesthetic: Minimalist Security Dashboard / Server UI
+    Tech: CSS Grid, Flexbox, JetBrains Mono + Inter, CSS-only animations + light JS
+  -->
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Abdullah Jadoon — Command Center Portfolio</title>
+  <title>Abdullah Jadoon — Senior IT Support Officer & Security Specialist</title>
+  <meta name="description" content="Security-architect portfolio for Abdullah Jadoon: infrastructure, security operations, key missions, active development, clearances, and contact." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <!-- Typography: JetBrains Mono for titles/labels; Inter for body copy -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      /* Specified palette */
+      --bg: #111111;      /* background */
+      --ink: #ffffff;     /* text */
+      --muted: #d7d7d7;   /* secondary text */
+      --accent:#007BFF;   /* links / buttons */
+      --line:#444444;     /* borders / dividers */
+
+      --radius: 12px;
+      --shell: 1180px;    /* max layout width */
+      --pad: 22px;
+    }
+
+    /* -------------------- Base / Layout -------------------- */
+    *{box-sizing:border-box}
+    html,body{margin:0;height:100%}
+    body{
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
+      letter-spacing: .15px;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+    a{color:var(--accent); text-decoration:none}
+    a:hover{opacity:.9}
+
+    .container{
+      width:min(var(--shell), 94vw);
+      margin-inline:auto;
+      padding-inline: var(--pad);
+    }
+
+    .section{
+      padding-block: 44px;
+      display:grid;
+      gap: 18px;
+    }
+    .divider{height:1px;background:var(--line);opacity:.65}
+
+    h1,h2,h3,h4,h5{
+      margin:0;
+      font-family: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      letter-spacing:.02em;
+    }
+    h2.label{
+      font-size:.95rem;
+      color:var(--muted);
+      letter-spacing:.18em;
+      font-weight:700;
+      text-transform:uppercase;
+    }
+
+    /* -------------------- Top Bar -------------------- */
+    .topbar{
+      border-bottom:1px solid var(--line);
+      position:sticky; top:0; z-index:10;
+      backdrop-filter: blur(6px);
+      background: color-mix(in srgb, #111 92%, #fff 8%);
+    }
+    .topbar .inner{
+      display:flex; align-items:center; justify-content:space-between;
+      padding-block: 10px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-family:"JetBrains Mono", monospace; font-weight:700;
+    }
+    .brand .glyph{
+      display:inline-grid; place-items:center;
+      width:32px;height:32px; border-radius:8px; border:1px solid var(--line);
+      background:linear-gradient(180deg, #161616, #0f0f0f);
+    }
+    .brand svg{width:18px;height:18px;fill:var(--accent)}
+    .nav{
+      display:flex; gap:18px; font-family:"JetBrains Mono", monospace; font-size:.92rem;
+    }
+    .nav a{color:var(--muted)}
+    .nav a:hover{color:var(--ink)}
+
+    /* -------------------- HERO / Command Terminal -------------------- */
+    .hero{
+      min-height: 92vh;
+      display:grid;
+      align-items:center;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 28px;
+      padding-block: 34px 22px;
+      position:relative;
+      overflow:hidden;
+    }
+    /* subtle animated grid background */
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        repeating-linear-gradient(0deg, rgba(255,255,255,.04) 0 1px, transparent 1px 40px),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 40px);
+      opacity:.14;
+      transform: translateY(0);
+      animation: gridSlide 16s linear infinite;
+      pointer-events:none;
+    }
+    .hero::after{ animation-direction: reverse; opacity:.10 }
+    @keyframes gridSlide{
+      to{ transform: translateY(-40px) }
+    }
+
+    .terminal{
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      background: linear-gradient(180deg,#0f0f0f,#0b0b0b);
+      box-shadow: 0 40px 110px rgba(0,0,0,.5);
+      padding: 18px;
+    }
+    .term-head{
+      display:flex; align-items:center; justify-content:space-between; margin-bottom:10px;
+    }
+    .lights{display:flex; gap:6px}
+    .light{
+      width:10px;height:10px;border-radius:50%;
+      background:#2b2b2b; border:1px solid #2a2a2a;
+    }
+    .light:nth-child(1){ background:#e5534b }  /* red */
+    .light:nth-child(2){ background:#f2b84b }  /* yellow */
+    .light:nth-child(3){ background:#4cc16e }  /* green */
+
+    .prompt{
+      font-family:"JetBrains Mono", monospace;
+      font-size: clamp(20px, 4vw, 40px);
+      line-height:1.2;
+      font-weight:700;
+    }
+    .sub{
+      margin-top:8px;
+      font-family:"JetBrains Mono", monospace;
+      color:var(--muted);
+      font-size: clamp(.9rem, 1.8vw, 1.05rem);
+      white-space: nowrap;
+      overflow:hidden;
+      border-right: 2px solid var(--accent);
+      width:0;
+      /* typing effect – width expands via JS, cursor blink via animation */
+      animation: caretBlink 1s steps(1) infinite;
+    }
+    @keyframes caretBlink{
+      50%{ border-color: transparent }
+    }
+
+    .hero-meta{
+      display:grid; gap:10px;
+      align-content:start;
+    }
+    .hero-meta .summary{ color:var(--muted); max-width:62ch }
+    .cta{
+      display:flex; gap:12px; flex-wrap:wrap; margin-top: 6px;
+    }
+    .btn{
+      appearance:none; border:1px solid var(--line); color:var(--ink);
+      background: linear-gradient(180deg,#171717,#0f0f0f);
+      padding: .7rem 1.0rem; border-radius: var(--radius);
+      font-family:"JetBrains Mono", monospace; font-weight:600; letter-spacing:.02em;
+      display:inline-flex; align-items:center; gap:10px;
+      transition: border-color .2s ease, transform .08s ease;
+    }
+    .btn:hover{ border-color:var(--accent) }
+    .btn:active{ transform: translateY(1px) }
+    .btn.exec::before{
+      content:"[EXECUTE]";
+      padding:.15rem .45rem; border-radius:8px; border:1px solid var(--line);
+      color:var(--accent); background:#0e0e0e; font-size:.82rem;
+    }
+
+    .contact-strip{
+      display:grid; gap:6px; align-content:start; border:1px dashed var(--line);
+      border-radius: var(--radius); padding: 14px;
+      background: color-mix(in srgb, #111 92%, #fff 8%);
+      font-family:"JetBrains Mono", monospace; font-size:.92rem;
+    }
+    .kv{ display:flex; gap:8px; align-items:center; color:var(--muted) }
+    .kv svg{ width:16px;height:16px; fill: var(--accent) }
+
+    /* -------------------- SYSTEM CAPABILITIES (Skills Dashboard) -------------------- */
+    .cap-grid{
+      display:grid; gap:14px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .cap{
+      border:1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(180deg,#141414,#0f0f0f);
+      padding: 14px;
+    }
+    .cap h3{
+      font-size: .95rem; letter-spacing:.08em; font-weight:700; color:var(--muted);
+      text-transform:uppercase; margin-bottom:10px;
+    }
+    .bar{
+      --pct: 0%;
+      position:relative; height: 14px; border-radius: 999px;
+      background: #1a1a1a; border:1px solid var(--line); overflow:hidden;
+    }
+    .bar > i{
+      position:absolute; inset:0 100% 0 0; border-radius: inherit;
+      background: linear-gradient(90deg, #0851c9, var(--accent));
+      box-shadow: 0 0 18px rgba(0,123,255,.35) inset;
+      transform: translateX(0);
+    }
+    .bar .pct{
+      position:absolute; right:10px; top:50%; transform:translateY(-50%);
+      font-family:"JetBrains Mono", monospace; font-size:.85rem; color:#e9e9e9
+    }
+
+    /* animate bars when visible */
+    .bar[data-ready="1"] > i{ animation: load 1.5s ease forwards }
+    @keyframes load{
+      to{ inset:0 calc(100% - var(--pct)) 0 0 }
+    }
+
+    .stack{ display:grid; gap:10px }
+
+    /* -------------------- Mission Log -------------------- */
+    .mission-grid{ display:grid; gap:14px; grid-template-columns:1fr 1fr }
+    .mission{
+      border:1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(180deg,#141414,#0f0f0f);
+      padding: 14px;
+      font-family:"JetBrains Mono", monospace;
+    }
+    .mission .header{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      margin-bottom:6px;
+    }
+    .badge{ border:1px solid var(--line); border-radius:10px; padding:.2rem .45rem; color:var(--muted) }
+
+    /* -------------------- Active Development -------------------- */
+    .dev{
+      border:1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(180deg,#141414,#0f0f0f);
+      padding: 16px;
+    }
+    .tags{ display:flex; gap:8px; flex-wrap:wrap; margin-top:6px }
+    .tag{ border:1px solid var(--line); border-radius: 999px; padding:.25rem .6rem; font-family:"JetBrains Mono", monospace; font-size:.9rem; color:var(--muted) }
+
+    /* -------------------- Security Clearances -------------------- */
+    .clearance-grid{ display:grid; gap:14px; grid-template-columns:repeat(3,1fr) }
+    .clear{
+      border:1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(180deg,#141414,#0f0f0f);
+      padding:14px; display:grid; gap:6px;
+    }
+    .clear h4{ font-size:1rem }
+    .issuer{ color:var(--muted) }
+
+    /* -------------------- Contact -------------------- */
+    .contact{
+      border:1px solid var(--line); border-radius: var(--radius);
+      background: linear-gradient(180deg,#141414,#0f0f0f);
+      padding:16px;
+    }
+    .grid-2{ display:grid; gap:10px; grid-template-columns:1fr 1fr }
+    .input,.textarea{
+      width:100%; padding:.8rem .9rem; border-radius:10px;
+      border:1px solid var(--line); background:#0d0d0d; color:var(--ink);
+      font: inherit; outline:none;
+    }
+    .textarea{ min-height:140px; resize:vertical }
+    .send{ margin-top:10px }
+    .send .btn::before{ content:"[SEND MESSAGE]"; color:#fff }
+
+    /* -------------------- Footer -------------------- */
+    footer{
+      border-top:1px solid var(--line);
+      color:var(--muted);
+      padding-block: 18px;
+      font-family:"JetBrains Mono", monospace; font-size:.92rem;
+    }
+
+    /* -------------------- Responsive -------------------- */
+    @media (max-width: 980px){
+      .hero{ grid-template-columns:1fr }
+      .mission-grid, .cap-grid, .grid-2, .clearance-grid{ grid-template-columns:1fr }
+    }
+
+    /* subtle animated icon rail (hero, decorative) */
+    .icon-rail{
+      display:flex; gap:12px; align-items:center; white-space:nowrap; overflow:hidden;
+      opacity:.35; user-select:none;
+    }
+    .rail-track{
+      display:inline-flex; gap:18px; padding-top:6px;
+      animation: drift 24s linear infinite;
+    }
+    @keyframes drift{
+      to{ transform: translateX(-50%) }
+    }
+    .rail-track svg{ width:18px;height:18px; fill: var(--muted) }
+  </style>
 </head>
 <body>
-  <h1>Abdullah Jadoon — Senior IT Support Officer & Security Specialist</h1>
-  <p>This is the Command Center portfolio HTML file. All styling, animations, and scripts are embedded in the final version.</p>
+
+  <!-- Top Navigation -->
+  <header class="topbar">
+    <div class="container inner">
+      <div class="brand">
+        <span class="glyph" aria-hidden="true">
+          <!-- minimalist terminal/shield icon -->
+          <svg viewBox="0 0 24 24"><path d="M3 4h18v10H3zM5 20h14M8 14v2h8v-2"/></svg>
+        </span>
+        <span>Abdullah&nbsp;Jadoon</span>
+      </div>
+      <nav class="nav" aria-label="Primary">
+        <a href="#capabilities">capabilities</a>
+        <a href="#missions">missions</a>
+        <a href="#development">development</a>
+        <a href="#clearances">clearances</a>
+        <a href="#contact">contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO / COMMAND TERMINAL -->
+  <section class="container hero" id="hero">
+    <div class="terminal" role="region" aria-label="Command Terminal">
+      <div class="term-head">
+        <div class="lights"><i class="light"></i><i class="light"></i><i class="light"></i></div>
+        <div class="icon-rail" aria-hidden="true">
+          <div class="rail-track">
+            <!-- minimal inline icons (server / shield / network / code) -->
+            <svg viewBox="0 0 24 24"><path d="M4 5h16v6H4zM4 13h16v6H4zM7 8h3M7 16h3"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M8 7h8M6 12h12M9 17h6"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 5h16v6H4zM4 13h16v6H4zM7 8h3M7 16h3"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M4 7h16M4 12h10M4 17h7"/></svg>
+            <svg viewBox="0 0 24 24"><path d="M8 7h8M6 12h12M9 17h6"/></svg>
+          </div>
+        </div>
+      </div>
+      <div class="prompt" aria-live="polite">
+        Abdullah Jadoon
+      </div>
+      <div id="typeTarget" class="sub"
+           aria-label="Gold Medalist | Cum Laude | Infrastructure & Vulnerability Management">
+        <!-- Filled via typing animation -->
+      </div>
+    </div>
+
+    <div class="hero-meta">
+      <h1 class="prompt" style="font-size:clamp(18px,1.6vw,20px); font-weight:600;">
+        Senior IT Support Officer & Security Specialist
+      </h1>
+      <p class="summary">
+        <strong>Professional Summary:</strong>
+        “A proven specialist in managing and securing critical healthcare IT infrastructure.
+        I ensure high availability, enforce robust security protocols, and enhance system resilience.
+        I augment my core responsibilities with proactive vulnerability research and automated tool development.”
+      </p>
+
+      <div class="cta">
+        <!-- The EXECUTE button: if CV_URL points to a PDF, we navigate; otherwise we generate a TXT resume as a safe fallback. -->
+        <button id="cvExecute" class="btn exec" type="button"> Download CV</button>
+        <a class="btn" href="#contact"> Initiate Contact</a>
+      </div>
+
+      <div class="contact-strip">
+        <div class="kv">
+          <svg viewBox="0 0 24 24"><path d="M3 6l9 6 9-6v12H3z"/></svg>
+          <span>Email: <a href="mailto:abdullahjadoon75@gmail.com">abdullahjadoon75@gmail.com</a></span>
+        </div>
+        <div class="kv">
+          <svg viewBox="0 0 24 24"><path d="M6 3h12v18H6zM9 19h6"/></svg>
+          <span>Phone: +92 326 0726238</span>
+        </div>
+        <div class="kv">
+          <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 017 7c0 5-7 13-7 13S5 14 5 9a7 7 0 017-7zm0 9a2 2 0 100-4 2 2 0 000 4z"/></svg>
+          <span>Location: Karachi, Pakistan</span>
+        </div>
+        <div class="kv">
+          <svg viewBox="0 0 24 24"><path d="M9 19V6l12-2v13M5 6h4M5 10h4M5 14h4M5 18h4"/></svg>
+          <span>GitHub: <a href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">github.com/abdullahjadoon34</a></span>
+        </div>
+        <div class="kv">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16v16H4zM7 8h10M7 12h10M7 16h7"/></svg>
+          <span>LinkedIn: <a href="https://linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">linkedin.com/in/abdullah-k-jadoon</a></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SYSTEM CAPABILITIES -->
+  <section id="capabilities" class="container section">
+    <h2 class="label">&gt; SYSTEM CAPABILITIES</h2>
+
+    <div class="cap-grid">
+      <!-- System Administration -->
+      <div class="cap">
+        <h3>System Administration</h3>
+        <div class="stack">
+          <div class="bar" style="--pct:95%"><i></i><span class="pct">95%</span></div>
+          <small class="muted">Server Management • Patch Management • Troubleshooting</small>
+        </div>
+      </div>
+
+      <!-- Security Protocols -->
+      <div class="cap">
+        <h3>Security Protocols</h3>
+        <div class="stack">
+          <div class="bar" style="--pct:88%"><i></i><span class="pct">88%</span></div>
+          <small class="muted">OWASP Top 10 • Burp Suite • OPSWAT MetaDefender</small>
+        </div>
+      </div>
+
+      <!-- Development Stack -->
+      <div class="cap">
+        <h3>Development Stack</h3>
+        <div class="stack">
+          <div class="bar" style="--pct:75%"><i></i><span class="pct">75%</span></div>
+          <small class="muted">MERN Stack • JavaScript • Automation</small>
+        </div>
+      </div>
+
+      <!-- Networking -->
+      <div class="cap">
+        <h3>Networking</h3>
+        <div class="stack">
+          <div class="bar" style="--pct:82%"><i></i><span class="pct">82%</span></div>
+          <small class="muted">IP Configuration • Diagnostics</small>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container divider" aria-hidden="true"></div>
+
+  <!-- MISSION LOG -->
+  <section id="missions" class="container section">
+    <h2 class="label">&gt; MISSION LOG / KEY OPERATIONS</h2>
+
+    <div class="mission-grid">
+      <!-- Operation 1 -->
+      <article class="mission" aria-label="Operation: Critical Infrastructure Migration">
+        <div class="header">
+          <strong>OPERATION: CRITICAL INFRASTRUCTURE MIGRATION</strong>
+          <span class="badge">Objective</span>
+        </div>
+        <p>Ensure zero-downtime, zero-data-loss migration of hospital patient data.</p>
+        <div class="header" style="margin-top:8px">
+          <span class="badge">Outcome</span>
+          <span class="badge" style="border-color:#2a2; color:#bfb">Success</span>
+        </div>
+        <p>Systems operational. Data integrity verified.</p>
+      </article>
+
+      <!-- Operation 2 -->
+      <article class="mission" aria-label="Operation: Secure Application Deployment">
+        <div class="header">
+          <strong>OPERATION: SECURE APPLICATION DEPLOYMENT</strong>
+          <span class="badge">Objective</span>
+        </div>
+        <p>Deploy and secure external-facing E-reports application.</p>
+        <div class="header" style="margin-top:8px">
+          <span class="badge">Outcome</span>
+          <span class="badge" style="border-color:#2a2; color:#bfb">Success</span>
+        </div>
+        <p>HTTPS protocol enforced. External access secured.</p>
+      </article>
+    </div>
+  </section>
+
+  <div class="container divider" aria-hidden="true"></div>
+
+  <!-- ACTIVE DEVELOPMENT -->
+  <section id="development" class="container section">
+    <h2 class="label">&gt; ACTIVE DEVELOPMENT</h2>
+    <article class="dev">
+      <h3>bbdash — Bug Bounty Dashboard</h3>
+      <p class="muted" style="margin-top:6px">
+        An automated Kali Linux toolkit designed to optimize the reconnaissance and vulnerability scanning pipeline.
+        Reduces manual effort and standardizes reporting.
+      </p>
+      <div class="tags">
+        <span class="tag">[STATUS: ACTIVE]</span>
+        <span class="tag">[TECH: Bash]</span>
+        <span class="tag">[TECH: Python]</span>
+        <span class="tag">[ENV: Kali]</span>
+      </div>
+    </article>
+  </section>
+
+  <div class="container divider" aria-hidden="true"></div>
+
+  <!-- SECURITY CLEARANCES -->
+  <section id="clearances" class="container section">
+    <h2 class="label">&gt; SECURITY CLEARANCES</h2>
+    <div class="clearance-grid">
+      <article class="clear">
+        <h4>ISO/IEC 27001 Information Security Associate</h4>
+        <div class="issuer">Issuing Body: Skillfront — Year: 2024</div>
+      </article>
+      <article class="clear">
+        <h4>OPSWAT File Security Associate (OFSA)</h4>
+        <div class="issuer">Issuing Body: OPSWAT Academy — Year: 2023</div>
+      </article>
+      <article class="clear">
+        <h4>Cyber Security: White-Hat Ethical Hacking</h4>
+        <div class="issuer">Issuing Body: Pirple — Year: 2022</div>
+      </article>
+    </div>
+  </section>
+
+  <div class="container divider" aria-hidden="true"></div>
+
+  <!-- CONTACT INTERFACE -->
+  <section id="contact" class="container section">
+    <h2 class="label">&gt; INITIATE CONTACT PROTOCOL</h2>
+    <form class="contact" id="contactForm">
+      <div class="grid-2">
+        <label>
+          <span class="muted">Name</span>
+          <input class="input" type="text" name="name" required placeholder="Your name"/>
+        </label>
+        <label>
+          <span class="muted">Email</span>
+          <input class="input" type="email" name="email" required placeholder="you@example.com"/>
+        </label>
+      </div>
+      <label style="display:block; margin-top:10px">
+        <span class="muted">Subject</span>
+        <input class="input" type="text" name="subject" required placeholder="Subject"/>
+      </label>
+      <label style="display:block; margin-top:10px">
+        <span class="muted">Message</span>
+        <textarea class="textarea" name="message" required placeholder="Write your message..."></textarea>
+      </label>
+      <div class="send">
+        <button class="btn" type="submit"> </button>
+      </div>
+    </form>
+  </section>
+
+  <footer class="container">
+    © 2025 Abdullah Jadoon — Command Center Portfolio
+  </footer>
+
+  <script>
+    // -------------------- CONFIG --------------------
+    // If you host a PDF, set the direct link here. The [EXECUTE] button will use it.
+    const CV_URL = ""; // e.g., "https://raw.githubusercontent.com/abdullahjadoon34/abdullahjadoon34.github.io/main/assets/Abdullah_Jadoon_CV.pdf"
+
+    // -------------------- Terminal Typing Effect --------------------
+    const target = document.getElementById('typeTarget');
+    const phrase = "> Gold Medalist | Cum Laude | Infrastructure & Vulnerability Management";
+    let idx = 0;
+    function typeStep(){
+      if(!target) return;
+      target.textContent = phrase.slice(0, ++idx);
+      // widen the clipping area to emulate typing (CSS width initially 0)
+      target.style.width = Math.min(target.textContent.length + 2, phrase.length) + "ch";
+      if(idx < phrase.length){ requestAnimationFrame(typeStep); }
+    }
+    // start typing shortly after load
+    setTimeout(typeStep, 350);
+
+    // -------------------- EXECUTE: Download CV --------------------
+    const execBtn = document.getElementById('cvExecute');
+    execBtn?.addEventListener('click', () => {
+      if (CV_URL) {
+        // Navigate to hosted PDF if provided
+        window.open(CV_URL, "_blank", "noopener");
+        return;
+      }
+      // Safe fallback: generate a TXT resume snapshot (so button always works in single-file mode)
+      const text =
+`Abdullah Jadoon — Senior IT Support Officer & Security Specialist
+
+Summary:
+A proven specialist in managing and securing critical healthcare IT infrastructure.
+Ensures high availability, enforces robust security protocols, and enhances system resilience.
+Augments core responsibilities with vulnerability research and automated tool development.
+
+Contact:
+Email: abdullahjadoon75@gmail.com
+Phone: +92 326 0726238
+Location: Karachi, Pakistan
+GitHub: github.com/abdullahjadoon34
+LinkedIn: linkedin.com/in/abdullah-k-jadoon
+
+Key Operations:
+1) Critical Infrastructure Migration — Success (zero data loss, minimal downtime)
+2) Secure Application Deployment — Success (HTTPS enforced, external access secured)
+
+Capabilities:
+System Administration (95%) | Security Protocols (88%) | Development (75%) | Networking (82%)`;
+
+      const blob = new Blob([text], {type:"text/plain;charset=utf-8"});
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = "Abdullah_Jadoon_CV_Snapshot.txt";
+      document.body.appendChild(a); a.click(); a.remove();
+      setTimeout(() => URL.revokeObjectURL(a.href), 3000);
+    });
+
+    // -------------------- Animate skill bars on first view --------------------
+    const bars = document.querySelectorAll('.bar');
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if(e.isIntersecting){ e.target.setAttribute('data-ready','1'); }});
+    }, { threshold: .35 });
+    bars.forEach(b => io.observe(b));
+
+    // -------------------- Contact: generate email (no backend needed) --------------------
+    document.getElementById('contactForm')?.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const fd = new FormData(e.target);
+      const name = encodeURIComponent(fd.get('name'));
+      const from = encodeURIComponent(fd.get('email'));
+      const subject = encodeURIComponent(fd.get('subject'));
+      const message = encodeURIComponent(fd.get('message'));
+      const body =
+`From: ${name} <${from}>
+
+${decodeURIComponent(message)}`;
+
+      const mailto = `mailto:abdullahjadoon75@gmail.com?subject=${subject}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+    });
+  </script>
 </body>
 </html>
