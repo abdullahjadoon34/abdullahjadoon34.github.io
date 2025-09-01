@@ -1,248 +1,388 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Abdullah Jadoon — Portfolio Hub</title>
-<meta name="description" content="Choose between Cinematic, Hacker/CRT, and Redroom monochrome portfolios for Abdullah Jadoon."/>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
-<style>
-  :root{
-    --bg:#0b0f14;
-    --panel:#0f131a;
-    --ink:#e8f0ff;
-    --muted:#9fb2cc;
-    --accent:#3ea6ff;
-    --ok:#3dffb6;
-    --warn:#ffc13e;
-    --line:#1b2430;
-    --glass:rgba(16,21,29,.66);
-  }
-  *{box-sizing:border-box}
-  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abdullah Jadoon — Portfolio Hub</title>
+  <meta name="description" content="Abdullah Jadoon — Senior IT Support Officer & Security Specialist. View Cinematic, Hacker CRT, or Redroom portfolio styles. Zero-downtime migration, secure app deployment, active recon toolkit." />
+  <meta property="og:title" content="Abdullah Jadoon — Portfolio Hub" />
+  <meta property="og:description" content="Choose a viewing style: Cinematic • Hacker CRT • Redroom. Secure infrastructure, zero-downtime migrations, HTTPS enforcement, recon automation." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="assets/personal-hero-1.jpg" />
+  <meta name="theme-color" content="#0f1720" />
 
-  /* animated grid bg */
-  .bg{
-    position:fixed;inset:0;z-index:-2;pointer-events:none;
-    background:
-      radial-gradient(1200px 600px at 70% -10%, #173554 0%, transparent 55%),
-      radial-gradient(900px 700px at 10% 110%, #16263a 0%, transparent 60%),
-      #0a0e13;
-  }
-  .grid{
-    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.18;
-    background-image:
-       linear-gradient(to right, #233142 1px, transparent 1px),
-       linear-gradient(to bottom, #233142 1px, transparent 1px);
-    background-size: 26px 26px;
-    animation:gridMove 18s linear infinite;
-  }
-  @keyframes gridMove{
-    0%{transform:translate3d(0,0,0)}
-    100%{transform:translate3d(-26px,-26px,0)}
-  }
-  @media (prefers-reduced-motion:reduce){
-    .grid{animation:none}
-  }
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
 
-  .wrap{max-width:1160px;margin:0 auto;padding:20px}
+  <!-- Preload hero -->
+  <link rel="preload" as="image" href="assets/personal-hero-1.jpg">
 
-  /* top mini-nav */
-  .mini{
-    display:flex;gap:18px;justify-content:flex-end;align-items:center;
-    font-size:12px;color:var(--muted)
-  }
-  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
-  .mini a{color:#cfe3ff;text-decoration:none;opacity:.9}
-  .mini a:hover{opacity:1}
+  <style>
+    :root{
+      --bg:#0b121a;
+      --panel:#0f1720;
+      --text:#dbe5f1;
+      --muted:#8aa0b6;
+      --accent:#3EA6FF;
+      --accent-2:#3DFFB6;
+      --border:#1b2430;
+      --chip:#0b1724;
+      --danger:#ff5d5d;
+      --green:#00ff7b;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 600px at 70% -10%, #16223355 0%, transparent 60%),
+        linear-gradient(180deg, #0b1118, #0b1118 50%, #0c141d 100%);
+      background-color:var(--bg);
+      overflow-x:hidden;
+    }
+    /* subtle grid overlay */
+    body::before{
+      content:"";
+      position:fixed; inset:0;
+      background-image:
+        radial-gradient(#0f1d2a 1px, transparent 1px),
+        radial-gradient(#0f1d2a 1px, transparent 1px);
+      background-size: 24px 24px, 24px 24px;
+      background-position: 0 0, 12px 12px;
+      opacity:.35; pointer-events:none; z-index:-1;
+    }
 
-  /* hero */
-  .hero{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0 22px}
-  .photo{
-    position:relative;border-radius:24px;overflow:hidden;min-height:380px;
-    border:1px solid var(--line);box-shadow:0 25px 80px #0008
-  }
-  .photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
-  .chip{
-    position:absolute;left:16px;bottom:16px;background:rgba(6,160,120,.15);
-    border:1px solid rgba(61,255,182,.45);backdrop-filter:blur(4px);
-    padding:8px 12px;border-radius:999px;font-size:12px;color:#bfffe7
-  }
-  .panel{
-    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01)) , var(--glass);
-    border:1px solid var(--line);border-radius:24px;padding:22px;
-    box-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 0 60px rgba(255,255,255,.02)
-  }
-  .kicker{color:#8fb0d6;letter-spacing:.25em;font-size:11px;margin:0 0 10px}
-  .h1{font-weight:900;line-height:1.08;font-size:32px;margin:0 0 10px}
-  .lead{color:#c8d8ee;line-height:1.6;margin:0 0 12px}
+    a{color:var(--accent); text-decoration:none}
+    a:focus-visible,button:focus-visible{outline:2px solid var(--accent)}
 
-  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
-  .btn{
-    --bg:rgba(62,166,255,.12);
-    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;
-    border-radius:12px;border:1px solid #25405d;background:var(--bg);color:#dff0ff;text-decoration:none;font-weight:600
-  }
-  .btn:hover{box-shadow:0 0 0 2px rgba(62,166,255,.25)}
-  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-  .tag{border:1px solid #2b3d54;padding:6px 10px;border-radius:999px;color:#cfe3ff;font-size:12px;background:#0f1620}
+    .wrap{max-width:1200px; margin:0 auto; padding:28px 20px 56px}
 
-  /* preview cards row */
-  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin:14px 0 6px}
-  .card{
-    position:relative;border-radius:20px;overflow:hidden;height:230px;cursor:pointer;
-    border:1px solid var(--line);background:#0b1219;transform-style:preserve-3d;
-    transition:transform .25s ease, box-shadow .25s ease
-  }
-  .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
-  .card:hover{box-shadow:0 18px 60px rgba(0,0,0,.45)}
-  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.95}
-  .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,9,14,.0) 30%, #0b1219 90%)}
-  .pill{position:absolute;left:14px;bottom:58px;font-size:12px;color:#cfe3ff;border:1px solid #223548;background:#0d1722;padding:6px 10px;border-radius:999px}
-  .sub{position:absolute;left:14px;bottom:34px;font-size:12px;color:#9fb2cc}
-  .cta{
-    position:absolute;right:12px;bottom:12px;padding:8px 11px;border-radius:10px;
-    border:1px solid #284b74;background:linear-gradient(180deg,rgba(62,166,255,.18),rgba(62,166,255,.12));
-    color:#e9f4ff;font-weight:800;text-decoration:none
-  }
-  .cta:hover{box-shadow:0 0 0 2px rgba(62,166,255,.25)}
+    /* Header */
+    header{position:sticky; top:0; z-index:5; background:linear-gradient(180deg, rgba(11,17,24,.9), rgba(11,17,24,.6)); backdrop-filter:saturate(130%) blur(6px); border-bottom:1px solid var(--border)}
+    .nav{
+      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0;
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.15px}
+    .dot{width:8px; height:8px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 12px var(--accent-2)}
+    .links{display:flex; gap:16px; align-items:center; flex-wrap:wrap}
+    .links a{color:var(--muted)}
+    .links a:hover{color:var(--text)}
+    .btn{
+      background:var(--accent); color:#00131f; border:none; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer;
+      transition:transform .12s ease, box-shadow .12s ease;
+    }
+    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px -12px #3ea6ff81}
+    .ghost{background:#0c1a28; color:#94badd; border:1px solid #1c3347}
+    .chip{
+      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:var(--chip); color:#b7c8da; border:1px solid var(--border); font-size:12px; font-weight:600
+    }
 
-  .kbd{margin-top:10px;color:#91a6c7;font-size:12px}
-  .kbd kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
-           background:#0e1621;border:1px solid #2a3a50;border-bottom-width:2px;padding:2px 6px;border-radius:6px;color:#cfe3ff}
+    /* Panels / cards */
+    .grid{display:grid; gap:22px}
+    .pan{
+      background:var(--panel); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:0 20px 60px -40px #000c; position:relative;
+    }
 
-  @media (max-width:1050px){
-    .hero{grid-template-columns:1fr}
-    .row{grid-template-columns:1fr;gap:14px}
-  }
-</style>
+    /* Hero */
+    .hero{grid-template-columns:1.1fr .9fr; margin-top:18px}
+    @media (max-width:980px){.hero{grid-template-columns:1fr}}
+    .hero-img{
+      aspect-ratio: 4/3; border-radius:16px; overflow:hidden; position:relative;
+      transform-style: preserve-3d; will-change: transform;
+    }
+    .hero-img img{width:100%; height:100%; object-fit:cover; display:block; transform:translateZ(0)}
+    .badge{
+      position:absolute; left:16px; bottom:16px; padding:10px 14px; border-radius:14px; backdrop-filter: blur(6px);
+      background:linear-gradient(180deg, rgba(0,40,70,.55), rgba(0,20,35,.65)); color:#d6ecff; border:1px solid #1d3a54; font-weight:700; font-size:14px
+    }
+    .h-title{font-size:34px; line-height:1.1; margin:0 0 10px; letter-spacing:.2px}
+    .h-text{color:var(--muted); margin:0 0 16px}
+    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 10px}
+
+    .token-row{display:flex; gap:8px; flex-wrap:wrap}
+    .token-row .chip{background:#0c1420}
+
+    /* Quick proofs */
+    .proofs{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:900px){.proofs{grid-template-columns:1fr}}
+    .proof-title{font-weight:800; margin:0 0 6px}
+    .proof-sub{color:var(--muted); margin:0 0 10px; font-size:14px}
+    .proof-link{font-weight:700}
+
+    /* Style Switchboard */
+    .switch{grid-template-columns:repeat(3,1fr)}
+    @media (max-width:980px){.switch{grid-template-columns:1fr}}
+    .style-card{
+      display:flex; flex-direction:column; gap:12px;
+      background:linear-gradient(180deg,#0e1621,#0b121a); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+      transition: transform .15s ease, box-shadow .15s ease; transform-style:preserve-3d; will-change:transform;
+    }
+    .style-card:hover{transform:translateY(-2px) rotateX(1deg); box-shadow:0 28px 80px -40px #001b2d}
+    .style-img{aspect-ratio:16/9; overflow:hidden; position:relative}
+    .style-img img{width:100%; height:100%; object-fit:cover; display:block}
+    .crt .style-img img{filter:grayscale(1) contrast(1.3) brightness(.85)}
+    .crt .style-img::after{
+      content:""; position:absolute; inset:0; background:linear-gradient(0deg, #0a0 0 100%); mix-blend-mode:screen; opacity:.5; pointer-events:none;
+    }
+    .style-body{padding:14px 14px 16px}
+    .style-title{font-weight:800; margin:0 0 6px}
+    .meta{color:var(--muted); font-size:13px; margin:0}
+    .enter{margin-left:auto}
+
+    /* Missions */
+    .m-grid{grid-template-columns:1fr 1fr}
+    @media (max-width:980px){.m-grid{grid-template-columns:1fr}}
+    .m-title{font-weight:800; margin:0 0 6px}
+    .m-sub{color:var(--muted); margin:0 0 12px}
+    .ul{margin:0 0 8px 18px}
+    .ul li{margin:4px 0}
+
+    /* Certs strip */
+    .certs{grid-template-columns:repeat(4,1fr)}
+    @media (max-width:980px){.certs{grid-template-columns:1fr 1fr}}
+    .thumb{aspect-ratio:16/9; overflow:hidden; border-radius:12px; border:1px solid var(--border); background:#0b131c}
+    .thumb img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.9)}
+    .thumb a{display:block; width:100%; height:100%}
+
+    /* Contact */
+    .contact{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
+    @media (max-width:980px){.contact{grid-template-columns:1fr}}
+    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
+    .copy{background:#0a1a27; border:1px solid #153046; color:#9cc3e9; padding:8px 10px; border-radius:10px; font-weight:700; cursor:pointer}
+    .copy:hover{background:#0e2131}
+    footer{color:#7f9bb6; padding:40px 0 10px; text-align:center; font-size:14px}
+
+    /* Small helper badges */
+    .kbd{
+      font-family:"JetBrains Mono",ui-monospace,monospace; font-weight:700; background:#0b1726; color:#a9d0ff; border:1px solid #18324b; border-radius:8px; padding:2px 7px; font-size:12px
+    }
+  </style>
 </head>
 <body>
-<div class="bg"></div>
-<div class="grid"></div>
+  <header>
+    <div class="wrap nav">
+      <div class="brand"><span class="dot" aria-hidden="true"></span> Abdullah Jadoon — <span style="opacity:.85">Portfolio Hub</span></div>
+      <nav class="links" aria-label="Primary">
+        <a href="federico.html">Federico</a>
+        <a href="hacker.html">Hacker</a>
+        <a href="redroom.html">Redroom</a>
+        <a class="btn ghost" href="assets/Abdullah_Jadoon_CV.pdf" download>Download CV</a>
+      </nav>
+    </div>
+  </header>
 
-<div class="wrap">
-  <!-- tiny status + quick links -->
-  <div class="mini" aria-label="top status and quick nav">
-    <span class="dot" aria-hidden="true"></span>
-    <span>Abdullah Jadoon — <span style="color:#d6e6ff">Portfolio Hub</span></span>
-    <nav style="margin-left:auto;display:flex;gap:16px">
-      <a href="./federico.html">Federico</a>
-      <a href="./hacker.html">Hacker</a>
-      <a href="./redroom.html">Redroom</a>
-    </nav>
-  </div>
+  <main class="wrap" id="top">
+    <!-- HERO -->
+    <section class="grid hero" aria-label="Hero">
+      <figure class="pan hero-img" id="heroImg" aria-label="Portrait">
+        <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon seated by the waterfront" loading="eager" decoding="async">
+        <figcaption class="badge">Security Architect • Karachi</figcaption>
+      </figure>
 
-  <!-- HERO -->
-  <section class="hero" aria-label="profile hero">
-    <figure class="photo" id="heroPhoto">
-      <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon — portrait" onerror="this.src='assets/PERSONAL.jpeg'"/>
-      <figcaption class="chip">Security Architect • Karachi</figcaption>
-    </figure>
+      <div class="pan">
+        <p class="chip" style="margin:0 0 8px">PROFILE</p>
+        <h1 class="h-title">Senior IT Support Officer<br>&amp; Security Specialist</h1>
+        <p class="h-text">I keep critical healthcare IT systems available, enforce robust security protocols, and drive resilience—augmented by vulnerability research and automated tooling.</p>
 
-    <aside class="panel" id="heroPanel">
-      <p class="kicker">PROFILE</p>
-      <h1 class="h1">Senior IT Support Officer &amp; Security Specialist</h1>
-      <p class="lead">
-        Proven in managing and securing healthcare IT infrastructure.
-        Keeps critical systems available, enforces robust security protocols, and drives
-        resilience—augmented by vulnerability research and automation work.
-      </p>
+        <div class="cta-row">
+          <a class="btn" href="federico.html" aria-label="Open Cinematic style">Open Cinematic</a>
+          <a class="btn ghost" href="hacker.html" aria-label="Open Hacker CRT style">Open Hacker</a>
+          <a class="btn ghost" href="#contact" aria-label="Open contact panel">Open Redroom</a>
+        </div>
 
-      <div class="btns" role="group" aria-label="open designs">
-        <a class="btn" href="federico.html" id="openFederico" aria-label="Open Cinematic">🎬 Open Cinematic</a>
-        <a class="btn" href="hacker.html" id="openHacker" aria-label="Open Hacker">🟢 Open Hacker</a>
-        <a class="btn" href="redroom.html" id="openRedroom" aria-label="Open Redroom">🔴 Open Redroom</a>
+        <div class="token-row" style="margin-top:6px">
+          <span class="chip">Gold Medalist</span>
+          <span class="chip">ISO 27001</span>
+          <span class="chip">OPSWAT OFSA</span>
+          <span class="chip">Splunk</span>
+          <span class="chip">MERN + Ops</span>
+        </div>
       </div>
+    </section>
 
-      <div class="tags" aria-label="highlights">
-        <span class="tag">Gold Medalist</span>
-        <span class="tag">ISO 27001</span>
-        <span class="tag">MERN + Ops</span>
-      </div>
-    </aside>
-  </section>
+    <!-- QUICK PROOFS -->
+    <section style="margin-top:20px" class="grid proofs" aria-label="Quick proofs">
+      <article class="pan">
+        <p class="proof-title">Zero-Downtime Migration</p>
+        <p class="proof-sub">All patient data moved to new physical server. 0 data loss; integrity verified.</p>
+        <a class="proof-link" href="federico.html#missions">Read in Cinematic →</a>
+      </article>
+      <article class="pan">
+        <p class="proof-title">Secure E-Reports</p>
+        <p class="proof-sub">Domain + IIS configured; HTTPS enforced. External access secured.</p>
+        <a class="proof-link" href="hacker.html#missions">Read in Hacker →</a>
+      </article>
+      <article class="pan">
+        <p class="proof-title">bbdash Recon Toolkit</p>
+        <p class="proof-sub">Automates reconnaissance & reporting; cuts manual effort.</p>
+        <a class="proof-link" href="federico.html#active-dev">View project →</a>
+      </article>
+    </section>
 
-  <!-- PREVIEW CARDS -->
-  <section aria-label="style previews">
-    <div class="row">
-      <!-- Cinematic -->
-      <a class="card tilt" href="federico.html" aria-label="Enter Cinematic style (1)">
-        <img loading="lazy" src="assets/personal-hero-1.jpg" alt="" onerror="this.src='assets/PERSONAL.jpeg'"/>
-        <div class="veil"></div>
-        <div class="pill">Federico — Cinematic</div>
-        <div class="sub">Full-screen hero • Projects, Missions, Certs</div>
-        <span class="cta">Enter</span>
+    <!-- SWITCHBOARD -->
+    <section style="margin-top:6px" aria-label="Style switchboard" class="grid switch">
+      <!-- Federico -->
+      <a class="style-card" href="federico.html" aria-label="Open Federico Cinematic">
+        <div class="style-img"><img src="assets/personal-hero-2.jpg" alt="Cinematic preview" loading="lazy"></div>
+        <div class="style-body">
+          <div style="display:flex; gap:10px; align-items:center">
+            <h3 class="style-title">Federico — Cinematic</h3>
+            <span class="chip">Full-screen hero</span>
+            <span class="chip">Projects • Missions • Certs</span>
+            <span class="btn enter">Enter</span>
+          </div>
+          <p class="meta">Polished, recruiter-friendly overview with narrative “mission” cards.</p>
+        </div>
       </a>
 
-      <!-- Hacker -->
-      <a class="card tilt" href="hacker.html" aria-label="Enter Hacker CRT style (2)">
-        <img loading="lazy" src="assets/cert-iso27001.jpg" alt="" onerror="this.style.display='none'"/>
-        <div class="veil"></div>
-        <div class="pill">Hacker — CRT</div>
-        <div class="sub">Boot panels &amp; grid • Neon console</div>
-        <span class="cta">Enter</span>
+      <!-- Hacker CRT -->
+      <a class="style-card crt" href="hacker.html" aria-label="Open Hacker CRT">
+        <div class="style-img"><img src="assets/cert-iso27001.jpg" alt="CRT style preview" loading="lazy"></div>
+        <div class="style-body">
+          <div style="display:flex; gap:10px; align-items:center">
+            <h3 class="style-title">Hacker — CRT</h3>
+            <span class="chip">Neon console UI</span>
+            <span class="chip">Boot panels & grid</span>
+            <span class="btn enter">Enter</span>
+          </div>
+          <p class="meta">Security-centric presentation mirroring a control panel.</p>
+        </div>
       </a>
 
       <!-- Redroom -->
-      <a class="card tilt" href="redroom.html" aria-label="Enter Redroom style (3)">
-        <img loading="lazy" src="assets/personal-hero-2.jpg" alt="" onerror="this.src='assets/PERSONAL 1.jpeg'"/>
-        <div class="veil"></div>
-        <div class="pill">Redroom — Monochrome</div>
-        <div class="sub">Bold silhouette • Gallery &amp; details</div>
-        <span class="cta">Enter</span>
+      <a class="style-card" href="redroom.html" aria-label="Open Redroom">
+        <div class="style-img"><img src="assets/personal-hero-1.jpg" alt="Red monochrome preview" loading="lazy" style="filter:grayscale(.2) contrast(1.1) saturate(1.2) hue-rotate(-20deg) brightness(.95)"></div>
+        <div class="style-body">
+          <div style="display:flex; gap:10px; align-items:center">
+            <h3 class="style-title">Redroom — Monochrome</h3>
+            <span class="chip">Bold silhouette</span>
+            <span class="chip">Gallery & details</span>
+            <span class="btn enter">Enter</span>
+          </div>
+          <p class="meta">Minimal, dramatic look focusing on person + credentials.</p>
+        </div>
       </a>
-    </div>
+    </section>
 
-    <p class="kbd">
-      Tips: press <kbd>1</kbd> for Cinematic, <kbd>2</kbd> for Hacker, <kbd>3</kbd> for Redroom ·
-      Valid HTML • Accessible landmarks • Images lazy-loaded.
-    </p>
-  </section>
+    <!-- RECENT MISSIONS -->
+    <section style="margin-top:6px" class="grid m-grid" aria-label="Recent missions">
+      <article class="pan">
+        <h3 class="m-title">Operation: Critical Infrastructure Migration</h3>
+        <p class="m-sub">Objective: move patient apps & data from legacy VM to new server.</p>
+        <ul class="ul">
+          <li>Planned & executed without downtime.</li>
+          <li>0 data loss; integrity verified post-cutover.</li>
+          <li>Hardening + baseline enforcement followed.</li>
+        </ul>
+        <a href="federico.html#missions">Open in Cinematic →</a>
+      </article>
+      <article class="pan">
+        <h3 class="m-title">Operation: Secure Application Deployment</h3>
+        <p class="m-sub">Objective: deploy external-facing E-reports with HTTPS/IIS.</p>
+        <ul class="ul">
+          <li>Configured DNS, domain binding, SSL/TLS.</li>
+          <li>Hardened IIS; logging & backups in place.</li>
+          <li>External access secured; stability improved.</li>
+        </ul>
+        <a href="hacker.html#missions">Open in Hacker →</a>
+      </article>
+    </section>
 
-  <footer style="margin:22px 0;color:#8fa4c6">© 2025 Abdullah Jadoon</footer>
-</div>
+    <!-- CERTS STRIP -->
+    <section style="margin-top:6px" class="grid certs" aria-label="Certifications">
+      <div class="pan thumb"><a href="assets/cert-gold.jpg" target="_blank" rel="noopener"><img alt="Gold Medal certificate" src="assets/cert-gold.jpg" loading="lazy"></a></div>
+      <div class="pan thumb"><a href="assets/cert-iso27001.jpg" target="_blank" rel="noopener"><img alt="ISO 27001 certificate" src="assets/cert-iso27001.jpg" loading="lazy"></a></div>
+      <div class="pan thumb"><a href="assets/cert-splunk.jpg" target="_blank" rel="noopener"><img alt="Splunk certificate" src="assets/cert-splunk.jpg" loading="lazy"></a></div>
+      <div class="pan thumb"><a href="assets/cert-pirple.jpg" target="_blank" rel="noopener"><img alt="Pirple White-Hat Hacking certificate" src="assets/cert-pirple.jpg" loading="lazy"></a></div>
+    </section>
 
-<script>
-/* ---------- Small interactions: keyboard shortcuts + hover tilt + gentle parallax ---------- */
+    <!-- CONTACT -->
+    <section id="contact" style="margin-top:6px" class="pan contact" aria-label="Contact">
+      <div>
+        <p class="chip" style="margin:0 0 10px">CONTACT</p>
+        <h3 style="margin:0 0 8px">Initiate Contact Protocol</h3>
+        <p class="h-text" style="margin:0 0 14px">Email or phone preferred. Keyboard shortcuts: <span class="kbd">1</span> Cinematic, <span class="kbd">2</span> Hacker, <span class="kbd">3</span> Redroom.</p>
+        <div class="row" style="margin:8px 0">
+          <button class="copy" data-copy="abdullahjadoon75@gmail.com" aria-label="Copy email">📧 abdullahjadoon75@gmail.com</button>
+          <button class="copy" data-copy="+92 326 0726238" aria-label="Copy phone">📞 +92 326 0726238</button>
+          <span class="chip">📍 Karachi, Pakistan</span>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <a class="btn ghost" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">GitHub</a>
+          <a class="btn ghost" href="https://www.linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="assets/Abdullah_Jadoon_CV.pdf" download>Download CV</a>
+        </div>
+      </div>
+      <aside>
+        <h4 style="margin:0 0 8px">Capabilities Snapshot</h4>
+        <div class="token-row" style="margin-bottom:10px">
+          <span class="chip">Windows Server</span><span class="chip">IIS</span><span class="chip">Patch Mgmt</span><span class="chip">Backups</span>
+        </div>
+        <div class="token-row" style="margin-bottom:10px">
+          <span class="chip">OWASP Top 10</span><span class="chip">Burp Suite</span><span class="chip">OPSWAT</span><span class="chip">Kali</span>
+        </div>
+        <div class="token-row">
+          <span class="chip">MERN</span><span class="chip">JavaScript</span><span class="chip">Automation</span>
+        </div>
+      </aside>
+    </section>
+  </main>
 
-// Keyboard shortcuts: 1/2/3 open styles
-document.addEventListener('keydown', (e)=>{
-  if (['INPUT','TEXTAREA'].includes((e.target.tagName||'').toUpperCase())) return;
-  if (e.key==='1') location.href='federico.html';
-  if (e.key==='2') location.href='hacker.html';
-  if (e.key==='3') location.href='redroom.html';
-});
+  <footer class="wrap">© 2025 Abdullah Jadoon — Portfolio Hub · <span style="color:#86b9ff">fast · accessible · recruiter-ready</span></footer>
 
-// Hover tilt for cards (no tilt if user prefers reduced motion)
-const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-if (!reduce) {
-  document.querySelectorAll('.tilt').forEach(card=>{
-    const r = 10; // degrees
-    card.addEventListener('mousemove', (e)=>{
-      const rect = card.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - .5;
-      const y = (e.clientY - rect.top)  / rect.height - .5;
-      card.style.transform = `rotateX(${(-y*r).toFixed(2)}deg) rotateY(${(x*r).toFixed(2)}deg)`;
+  <script>
+    // Keyboard shortcuts
+    addEventListener('keydown', (e)=>{
+      if (['INPUT','TEXTAREA'].includes((document.activeElement||{}).tagName)) return;
+      if (e.key==='1') location.href='federico.html';
+      if (e.key==='2') location.href='hacker.html';
+      if (e.key==='3') location.href='redroom.html';
     });
-    card.addEventListener('mouseleave', ()=> card.style.transform='rotateX(0) rotateY(0)');
-  });
 
-  // gentle parallax on hero photo/panel
-  const photo = document.getElementById('heroPhoto');
-  const panel = document.getElementById('heroPanel');
-  const parallax = (e)=>{
-    const {innerWidth:w, innerHeight:h} = window;
-    const cx = (e.clientX - w/2) / w, cy = (e.clientY - h/2) / h;
-    photo.style.transform = `translate3d(${cx*8}px, ${cy*6}px,0)`;
-    panel.style.transform = `translate3d(${cx*-6}px, ${cy*-4}px,0)`;
-  };
-  window.addEventListener('mousemove', parallax);
-}
+    // Copy buttons
+    document.querySelectorAll('.copy').forEach(btn=>{
+      btn.addEventListener('click', async ()=>{
+        try{
+          await navigator.clipboard.writeText(btn.dataset.copy);
+          const old = btn.textContent;
+          btn.textContent = '✓ Copied';
+          setTimeout(()=>btn.textContent = old, 1200);
+        }catch(err){ console.warn('Copy failed', err); }
+      });
+    });
 
-/* Preload big images for snappy first click */
-['assets/personal-hero-1.jpg','assets/personal-hero-2.jpg','assets/cert-iso27001.jpg']
-  .forEach(src=>{ const i=new Image(); i.src=src; });
-</script>
+    // Subtle parallax on hero (reduced motion aware)
+    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hero = document.getElementById('heroImg');
+    if(hero && !prefersReduced){
+      hero.addEventListener('mousemove', (e)=>{
+        const r = hero.getBoundingClientRect();
+        const rx = ((e.clientX - r.left)/r.width - .5) * 4;
+        const ry = ((e.clientY - r.top)/r.height - .5) * -4;
+        hero.style.transform = `perspective(900px) rotateX(${ry}deg) rotateY(${rx}deg)`;
+      });
+      hero.addEventListener('mouseleave', ()=> hero.style.transform = 'perspective(900px) rotateX(0) rotateY(0)');
+    }
+
+    // Tilt on style cards
+    document.querySelectorAll('.style-card').forEach(card=>{
+      if(prefersReduced) return;
+      card.addEventListener('mousemove', (e)=>{
+        const r = card.getBoundingClientRect();
+        const rx = ((e.clientX - r.left)/r.width - .5) * 6;
+        const ry = ((e.clientY - r.top)/r.height - .5) * -6;
+        card.style.transform = `translateY(-2px) rotateX(${ry}deg) rotateY(${rx}deg)`;
+      });
+      card.addEventListener('mouseleave', ()=> card.style.transform = '');
+    });
+
+    // Preload a couple of images for snappy nav
+    ['assets/personal-hero-2.jpg','assets/cert-iso27001.jpg','assets/cert-gold.jpg'].forEach(src=>{
+      const img = new Image(); img.src = src;
+    });
+  </script>
 </body>
 </html>
