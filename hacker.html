@@ -1,1 +1,51 @@
-<!doctype html><html><body><nav><a href='federico.html'>Federico</a> | <a href='hacker.html'>Hacker</a> | <a href='redroom.html'>Redroom</a></nav><h1>Hacker CRT Style</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Hacker CRT — Abdullah Jadoon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&display=swap" rel="stylesheet">
+<style>
+  :root{--green:#00ff88;--bg:#000}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--green);font-family:"JetBrains Mono",monospace;height:100vh;overflow:hidden}
+  .scan:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(transparent 0 2px,rgba(0,0,0,.35) 2px 4px);mix-blend-mode:multiply;pointer-events:none}
+  .wrap{position:relative;height:100%;padding:32px}
+  .photo{position:absolute;inset:0;background:url('assets/PERSONAL 1.jpeg') center/cover no-repeat;filter:grayscale(1) brightness(.45) contrast(1.2);opacity:.6}
+  .vignette{position:absolute;inset:0;box-shadow:inset 0 0 200px 80px #000}
+  nav{position:fixed;top:14px;left:14px;z-index:5}
+  nav a{color:var(--green);text-decoration:none;margin-right:8px;border:1px solid var(--green);padding:6px 10px;border-radius:8px}
+  .name{position:absolute;inset:auto 24px 24px 24px;font-size:min(14vw,180px);font-weight:800;letter-spacing:.04em;line-height:.9;text-shadow:0 0 8px rgba(0,255,136,.6)}
+  .side{position:absolute;top:48px;right:40px;text-align:right;opacity:.85}
+  .side p{margin:.3rem 0}
+  .boot{position:absolute;left:24px;bottom:18px;opacity:.85;font-size:12px}
+  .badges{position:absolute;right:24px;bottom:24px;display:flex;gap:10px}
+  .badges img{height:40px;border:1px solid var(--green);padding:2px;border-radius:6px;filter:grayscale(1) brightness(1.2)}
+</style>
+</head>
+<body class="scan">
+<nav><a href="federico.html">Federico</a><a href="hacker.html">Hacker</a><a href="redroom.html">Redroom</a></nav>
+<div class="wrap">
+  <div class="photo"></div>
+  <div class="vignette"></div>
+  <div class="side">
+    <p>DEVELOPER / SECURITY</p>
+    <p>INFRASTRUCTURE OPS</p>
+    <p>BUG BOUNTY</p>
+  </div>
+  <div class="name">ABDULLAH</div>
+  <div class="boot">
+    &gt; boot_sequence: init_network ✔︎ &nbsp; init_firewall ✔︎ &nbsp; load_profile ✔︎<br/>
+    &gt; user: abdullahjadoon34 &nbsp; role: it_support &amp; security_specialist<br/>
+    &gt; current_mission: harden_servers + automate_triage
+  </div>
+  <div class="badges">
+    <img src="assets/cert-iso27001.jpg" alt="ISO 27001">
+    <img src="assets/cert-pirple.jpg" alt="Pirple">
+    <img src="assets/cert-splunk.jpg" alt="Splunk">
+  </div>
+</div>
+</body>
+</html>

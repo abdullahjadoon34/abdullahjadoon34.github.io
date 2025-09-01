@@ -1,1 +1,38 @@
-<!doctype html><html><body><nav><a href='federico.html'>Federico</a> | <a href='hacker.html'>Hacker</a> | <a href='redroom.html'>Redroom</a></nav><h1>Redroom Style</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Redroom — Abdullah Jadoon</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;600;900&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;height:100vh;overflow:hidden;background:#000;font-family:Inter,system-ui,Arial}
+  .bg{position:absolute;inset:0;background:url('assets/PERSONAL 1.jpeg') center/cover no-repeat;filter:grayscale(1) contrast(1.1) brightness(.6)}
+  .wash{position:absolute;inset:0;background:rgba(220,20,60,.85);mix-blend-mode:screen}
+  nav{position:fixed;top:14px;left:14px;z-index:3}
+  nav a{color:#fff;text-decoration:none;margin-right:8px;border:1px solid rgba(255,255,255,.6);padding:6px 10px;border-radius:8px;background:rgba(0,0,0,.2)}
+  .copy{position:absolute;left:10vw;bottom:10vh;color:#fff;max-width:560px}
+  h1{font-size:clamp(48px,12vw,120px);line-height:.9;margin:0 0 10px 0;text-transform:uppercase;letter-spacing:.06em}
+  p{margin:.4rem 0 1rem 0;color:#f8f8f8}
+  .thumbs{display:flex;gap:10px;margin-top:6px}
+  .thumbs img{height:46px;border-radius:6px;border:1px solid rgba(255,255,255,.45)}
+</style>
+</head>
+<body>
+<nav><a href="federico.html">Federico</a><a href="hacker.html">Hacker</a><a href="redroom.html">Redroom</a></nav>
+<div class="bg"></div>
+<div class="wash"></div>
+<section class="copy">
+  <h1>Abdullah<br/>Jadoon</h1>
+  <p>Senior IT Support Officer & Security Specialist — Karachi, Pakistan. Gold Medalist, Cum Laude. I build reliable systems and practice pragmatic security.</p>
+  <div class="thumbs">
+    <img src="assets/cert-gold.jpg" alt="Gold Medal">
+    <img src="assets/cert-iso27001.jpg" alt="ISO 27001">
+    <img src="assets/cert-pirple.jpg" alt="Pirple">
+  </div>
+</section>
+</body>
+</html>
