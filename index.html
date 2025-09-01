@@ -1,388 +1,207 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Abdullah Jadoon — Portfolio Hub</title>
-  <meta name="description" content="Abdullah Jadoon — Senior IT Support Officer & Security Specialist. View Cinematic, Hacker CRT, or Redroom portfolio styles. Zero-downtime migration, secure app deployment, active recon toolkit." />
-  <meta property="og:title" content="Abdullah Jadoon — Portfolio Hub" />
-  <meta property="og:description" content="Choose a viewing style: Cinematic • Hacker CRT • Redroom. Secure infrastructure, zero-downtime migrations, HTTPS enforcement, recon automation." />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="assets/personal-hero-1.jpg" />
-  <meta name="theme-color" content="#0f1720" />
-
-  <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
-
-  <!-- Preload hero -->
-  <link rel="preload" as="image" href="assets/personal-hero-1.jpg">
-
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Access Gateway — Abdullah Jadoon</title>
+  <meta name="description" content="Secure access gateway to Abdullah Jadoon's portfolio styles: Cinematic, Hacker CRT, and Red Monochrome." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
     :root{
-      --bg:#0b121a;
-      --panel:#0f1720;
-      --text:#dbe5f1;
-      --muted:#8aa0b6;
-      --accent:#3EA6FF;
-      --accent-2:#3DFFB6;
-      --border:#1b2430;
-      --chip:#0b1724;
-      --danger:#ff5d5d;
-      --green:#00ff7b;
+      --bg:#0b0f12;
+      --card:#0f1419;
+      --ink:#eaf2ff;
+      --muted:#9fb3c8;
+      --accent:#18a0fb;
+      --accent-2:#0ef;
+      --good:#40d589;
+      --glow:0 0 24px rgba(24,160,251,.45);
+      --glow-2:0 0 28px rgba(14,255,255,.4);
+      --border:1px solid rgba(255,255,255,.08);
+      --radius:18px;
     }
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0;
-      font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-      color:var(--text);
+      margin:0; background:radial-gradient(1200px 700px at 20% -10%, #13202c 0%, #0b0f12 55%) fixed;
+      color:var(--ink); font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      line-height:1.45;
+    }
+    /* Subtle moving grid + scanlines */
+    .grid:before,.grid:after{
+      content:""; position:fixed; inset:0; pointer-events:none; z-index:0;
+    }
+    .grid:before{
       background:
-        radial-gradient(1200px 600px at 70% -10%, #16223355 0%, transparent 60%),
-        linear-gradient(180deg, #0b1118, #0b1118 50%, #0c141d 100%);
-      background-color:var(--bg);
-      overflow-x:hidden;
+       linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px) 0 0/ 28px 28px,
+       linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px) 0 0/ 28px 28px;
+      animation: drift 22s linear infinite;
     }
-    /* subtle grid overlay */
-    body::before{
-      content:"";
-      position:fixed; inset:0;
-      background-image:
-        radial-gradient(#0f1d2a 1px, transparent 1px),
-        radial-gradient(#0f1d2a 1px, transparent 1px);
-      background-size: 24px 24px, 24px 24px;
-      background-position: 0 0, 12px 12px;
-      opacity:.35; pointer-events:none; z-index:-1;
+    .grid:after{
+      background: repeating-linear-gradient(transparent,transparent 2px, rgba(255,255,255,.05) 3px);
+      mix-blend-mode: overlay; opacity:.25; animation: scan 8s linear infinite;
     }
+    @keyframes drift{ to{ transform: translate3d(-28px, -28px,0); } }
+    @keyframes scan{ 0%{transform:translateY(-20px)} 100%{transform:translateY(20px)} }
 
-    a{color:var(--accent); text-decoration:none}
-    a:focus-visible,button:focus-visible{outline:2px solid var(--accent)}
-
-    .wrap{max-width:1200px; margin:0 auto; padding:28px 20px 56px}
-
-    /* Header */
-    header{position:sticky; top:0; z-index:5; background:linear-gradient(180deg, rgba(11,17,24,.9), rgba(11,17,24,.6)); backdrop-filter:saturate(130%) blur(6px); border-bottom:1px solid var(--border)}
-    .nav{
-      display:flex; align-items:center; justify-content:space-between; gap:16px; padding:10px 0;
+    .wrap{position:relative; z-index:1; max-width:1100px; margin:0 auto; padding:42px 20px 28px;}
+    .brand{display:flex; align-items:center; gap:12px; color:var(--muted); letter-spacing:.08em; font-weight:600; text-transform:uppercase; font-size:.86rem}
+    .dot{width:8px;height:8px;border-radius:50%;background:var(--good);box-shadow:0 0 0 4px rgba(64,213,137,.12)}
+    .shell{
+      margin-top:18px; background:linear-gradient(180deg,#0d1217 0%, #0b0f12 100%);
+      border-radius:var(--radius); border:var(--border); box-shadow:var(--glow);
+      padding:28px; position:relative; overflow:hidden;
     }
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.15px}
-    .dot{width:8px; height:8px; border-radius:50%; background:var(--accent-2); box-shadow:0 0 12px var(--accent-2)}
-    .links{display:flex; gap:16px; align-items:center; flex-wrap:wrap}
-    .links a{color:var(--muted)}
-    .links a:hover{color:var(--text)}
-    .btn{
-      background:var(--accent); color:#00131f; border:none; padding:10px 14px; border-radius:12px; font-weight:700; cursor:pointer;
-      transition:transform .12s ease, box-shadow .12s ease;
+    .chrome{
+      display:flex; align-items:center; gap:10px; margin-bottom:18px; color:var(--muted);
+      font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace; font-size:.9rem;
     }
-    .btn:hover{transform:translateY(-1px); box-shadow:0 10px 22px -12px #3ea6ff81}
-    .ghost{background:#0c1a28; color:#94badd; border:1px solid #1c3347}
-    .chip{
-      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; background:var(--chip); color:#b7c8da; border:1px solid var(--border); font-size:12px; font-weight:600
+    .leds span{
+      display:inline-block; width:10px; height:10px; border-radius:50%;
+      margin-right:6px; filter:saturate(1.3); box-shadow:0 0 10px currentColor;
     }
+    .led-red{color:#ff6b6b} .led-yellow{color:#ffc857} .led-green{color:#3fe59b}
+    .path{opacity:.75}
 
-    /* Panels / cards */
-    .grid{display:grid; gap:22px}
-    .pan{
-      background:var(--panel); border:1px solid var(--border); border-radius:18px; padding:18px; box-shadow:0 20px 60px -40px #000c; position:relative;
+    .console{
+      font-family:"JetBrains Mono", ui-monospace, Menlo, Consolas, monospace;
+      background:rgba(0,0,0,.35); border:var(--border); border-radius:14px; padding:20px;
+      min-height:150px; position:relative;
     }
-
-    /* Hero */
-    .hero{grid-template-columns:1.1fr .9fr; margin-top:18px}
-    @media (max-width:980px){.hero{grid-template-columns:1fr}}
-    .hero-img{
-      aspect-ratio: 4/3; border-radius:16px; overflow:hidden; position:relative;
-      transform-style: preserve-3d; will-change: transform;
+    .line{white-space:pre-wrap}
+    .caret{
+      display:inline-block; width:.65ch; height:1.05em; background:var(--accent);
+      box-shadow:var(--glow-2); vertical-align:-2px; animation: blink 1.1s steps(1,end) infinite;
     }
-    .hero-img img{width:100%; height:100%; object-fit:cover; display:block; transform:translateZ(0)}
-    .badge{
-      position:absolute; left:16px; bottom:16px; padding:10px 14px; border-radius:14px; backdrop-filter: blur(6px);
-      background:linear-gradient(180deg, rgba(0,40,70,.55), rgba(0,20,35,.65)); color:#d6ecff; border:1px solid #1d3a54; font-weight:700; font-size:14px
+    @keyframes blink{50%{opacity:0}}
+
+    .actions{
+      display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+      gap:16px; margin-top:20px;
     }
-    .h-title{font-size:34px; line-height:1.1; margin:0 0 10px; letter-spacing:.2px}
-    .h-text{color:var(--muted); margin:0 0 16px}
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin:10px 0 10px}
-
-    .token-row{display:flex; gap:8px; flex-wrap:wrap}
-    .token-row .chip{background:#0c1420}
-
-    /* Quick proofs */
-    .proofs{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:900px){.proofs{grid-template-columns:1fr}}
-    .proof-title{font-weight:800; margin:0 0 6px}
-    .proof-sub{color:var(--muted); margin:0 0 10px; font-size:14px}
-    .proof-link{font-weight:700}
-
-    /* Style Switchboard */
-    .switch{grid-template-columns:repeat(3,1fr)}
-    @media (max-width:980px){.switch{grid-template-columns:1fr}}
-    .style-card{
-      display:flex; flex-direction:column; gap:12px;
-      background:linear-gradient(180deg,#0e1621,#0b121a); border:1px solid var(--border); border-radius:16px; overflow:hidden;
-      transition: transform .15s ease, box-shadow .15s ease; transform-style:preserve-3d; will-change:transform;
+    .cmd{
+      display:flex; align-items:center; justify-content:space-between; gap:14px;
+      padding:18px 20px; border-radius:14px; border:1px solid rgba(24,160,251,.3);
+      background:linear-gradient(180deg, rgba(24,160,251,.14), rgba(24,160,251,.06));
+      color:#dff2ff; text-decoration:none; font-weight:700; letter-spacing:.03em;
+      box-shadow:var(--glow); transition:transform .18s ease, box-shadow .18s ease, border-color .18s ease;
     }
-    .style-card:hover{transform:translateY(-2px) rotateX(1deg); box-shadow:0 28px 80px -40px #001b2d}
-    .style-img{aspect-ratio:16/9; overflow:hidden; position:relative}
-    .style-img img{width:100%; height:100%; object-fit:cover; display:block}
-    .crt .style-img img{filter:grayscale(1) contrast(1.3) brightness(.85)}
-    .crt .style-img::after{
-      content:""; position:absolute; inset:0; background:linear-gradient(0deg, #0a0 0 100%); mix-blend-mode:screen; opacity:.5; pointer-events:none;
+    .cmd small{font-weight:600; opacity:.8}
+    .cmd:hover{ transform: translateY(-2px); box-shadow:0 12px 36px rgba(24,160,251,.28); border-color:rgba(14,255,255,.45) }
+    .cmd .key{font-family:"JetBrains Mono",ui-monospace; font-size:.78rem; padding:6px 10px; border-radius:10px; background:rgba(0,0,0,.35); border:1px solid rgba(255,255,255,.12)}
+    .cmd.green{background:linear-gradient(180deg, rgba(33,255,132,.14), rgba(33,255,132,.06)); border-color:rgba(33,255,132,.35)}
+    .cmd.pink{background:linear-gradient(180deg, rgba(255,80,120,.16), rgba(255,80,120,.07)); border-color:rgba(255,80,120,.35)}
+
+    .foot{
+      display:flex; flex-wrap:wrap; align-items:center; gap:12px; margin-top:22px; color:var(--muted);
+      font-size:.92rem; justify-content:space-between;
     }
-    .style-body{padding:14px 14px 16px}
-    .style-title{font-weight:800; margin:0 0 6px}
-    .meta{color:var(--muted); font-size:13px; margin:0}
-    .enter{margin-left:auto}
-
-    /* Missions */
-    .m-grid{grid-template-columns:1fr 1fr}
-    @media (max-width:980px){.m-grid{grid-template-columns:1fr}}
-    .m-title{font-weight:800; margin:0 0 6px}
-    .m-sub{color:var(--muted); margin:0 0 12px}
-    .ul{margin:0 0 8px 18px}
-    .ul li{margin:4px 0}
-
-    /* Certs strip */
-    .certs{grid-template-columns:repeat(4,1fr)}
-    @media (max-width:980px){.certs{grid-template-columns:1fr 1fr}}
-    .thumb{aspect-ratio:16/9; overflow:hidden; border-radius:12px; border:1px solid var(--border); background:#0b131c}
-    .thumb img{width:100%; height:100%; object-fit:cover; display:block; filter:saturate(.9)}
-    .thumb a{display:block; width:100%; height:100%}
-
-    /* Contact */
-    .contact{display:grid; grid-template-columns:1.2fr .8fr; gap:18px}
-    @media (max-width:980px){.contact{grid-template-columns:1fr}}
-    .row{display:flex; gap:10px; align-items:center; flex-wrap:wrap}
-    .copy{background:#0a1a27; border:1px solid #153046; color:#9cc3e9; padding:8px 10px; border-radius:10px; font-weight:700; cursor:pointer}
-    .copy:hover{background:#0e2131}
-    footer{color:#7f9bb6; padding:40px 0 10px; text-align:center; font-size:14px}
-
-    /* Small helper badges */
-    .kbd{
-      font-family:"JetBrains Mono",ui-monospace,monospace; font-weight:700; background:#0b1726; color:#a9d0ff; border:1px solid #18324b; border-radius:8px; padding:2px 7px; font-size:12px
+    .links{display:flex; gap:10px; flex-wrap:wrap}
+    .pill{
+      text-decoration:none; color:#e9f2ff; background:#0e141a; border:1px solid rgba(255,255,255,.12);
+      padding:10px 14px; border-radius:12px; font-weight:600; transition:opacity .2s ease, transform .15s ease
+    }
+    .pill:hover{opacity:.9; transform:translateY(-1px)}
+    .kbd{font-family:"JetBrains Mono", ui-monospace; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); padding:2px 6px; border-radius:6px}
+    @media (max-width:720px){
+      .chrome{font-size:.82rem}
     }
   </style>
 </head>
-<body>
-  <header>
-    <div class="wrap nav">
-      <div class="brand"><span class="dot" aria-hidden="true"></span> Abdullah Jadoon — <span style="opacity:.85">Portfolio Hub</span></div>
-      <nav class="links" aria-label="Primary">
-        <a href="federico.html">Federico</a>
-        <a href="hacker.html">Hacker</a>
-        <a href="redroom.html">Redroom</a>
-        <a class="btn ghost" href="assets/Abdullah_Jadoon_CV.pdf" download>Download CV</a>
+<body class="grid">
+  <main class="wrap" aria-labelledby="title">
+    <div class="brand" aria-hidden="true"><span class="dot"></span> Abdullah Jadoon — Portfolio Access</div>
+
+    <section class="shell" role="region" aria-label="Secure console">
+      <div class="chrome">
+        <div class="leds" aria-hidden="true">
+          <span class="led-red"></span><span class="led-yellow"></span><span class="led-green"></span>
+        </div>
+        <div class="path">/auth/gateway • v1.3 • build #SEC-2025-09</div>
+      </div>
+
+      <!-- Boot / typewriter -->
+      <div class="console" aria-live="polite" aria-atomic="true">
+        <div id="log" aria-label="console output">
+          <!-- lines will be typed here -->
+        </div>
+      </div>
+
+      <!-- Actions -->
+      <nav class="actions" aria-label="Entry points">
+        <a class="cmd" href="federico.html">
+          <span>[ EXECUTE ] — Cinematic</span>
+          <span class="key">1</span>
+        </a>
+        <a class="cmd green" href="hacker.html">
+          <span>[ EXECUTE ] — Hacker CRT</span>
+          <span class="key">2</span>
+        </a>
+        <a class="cmd pink" href="redroom.html">
+          <span>[ EXECUTE ] — Redroom Mono</span>
+          <span class="key">3</span>
+        </a>
       </nav>
-    </div>
-  </header>
 
-  <main class="wrap" id="top">
-    <!-- HERO -->
-    <section class="grid hero" aria-label="Hero">
-      <figure class="pan hero-img" id="heroImg" aria-label="Portrait">
-        <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon seated by the waterfront" loading="eager" decoding="async">
-        <figcaption class="badge">Security Architect • Karachi</figcaption>
-      </figure>
-
-      <div class="pan">
-        <p class="chip" style="margin:0 0 8px">PROFILE</p>
-        <h1 class="h-title">Senior IT Support Officer<br>&amp; Security Specialist</h1>
-        <p class="h-text">I keep critical healthcare IT systems available, enforce robust security protocols, and drive resilience—augmented by vulnerability research and automated tooling.</p>
-
-        <div class="cta-row">
-          <a class="btn" href="federico.html" aria-label="Open Cinematic style">Open Cinematic</a>
-          <a class="btn ghost" href="hacker.html" aria-label="Open Hacker CRT style">Open Hacker</a>
-          <a class="btn ghost" href="#contact" aria-label="Open contact panel">Open Redroom</a>
+      <div class="foot">
+        <div>
+          Tips: press <span class="kbd">1</span>/<span class="kbd">2</span>/<span class="kbd">3</span> to jump.  
+          <span aria-hidden="true">•</span> Safe, accessible, fast.
         </div>
-
-        <div class="token-row" style="margin-top:6px">
-          <span class="chip">Gold Medalist</span>
-          <span class="chip">ISO 27001</span>
-          <span class="chip">OPSWAT OFSA</span>
-          <span class="chip">Splunk</span>
-          <span class="chip">MERN + Ops</span>
+        <div class="links" role="navigation" aria-label="Profile">
+          <a class="pill" href="assets/Abdullah_Jadoon_CV.pdf" download>Download CV</a>
+          <a class="pill" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">GitHub</a>
+          <a class="pill" href="https://www.linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">LinkedIn</a>
         </div>
       </div>
-    </section>
-
-    <!-- QUICK PROOFS -->
-    <section style="margin-top:20px" class="grid proofs" aria-label="Quick proofs">
-      <article class="pan">
-        <p class="proof-title">Zero-Downtime Migration</p>
-        <p class="proof-sub">All patient data moved to new physical server. 0 data loss; integrity verified.</p>
-        <a class="proof-link" href="federico.html#missions">Read in Cinematic →</a>
-      </article>
-      <article class="pan">
-        <p class="proof-title">Secure E-Reports</p>
-        <p class="proof-sub">Domain + IIS configured; HTTPS enforced. External access secured.</p>
-        <a class="proof-link" href="hacker.html#missions">Read in Hacker →</a>
-      </article>
-      <article class="pan">
-        <p class="proof-title">bbdash Recon Toolkit</p>
-        <p class="proof-sub">Automates reconnaissance & reporting; cuts manual effort.</p>
-        <a class="proof-link" href="federico.html#active-dev">View project →</a>
-      </article>
-    </section>
-
-    <!-- SWITCHBOARD -->
-    <section style="margin-top:6px" aria-label="Style switchboard" class="grid switch">
-      <!-- Federico -->
-      <a class="style-card" href="federico.html" aria-label="Open Federico Cinematic">
-        <div class="style-img"><img src="assets/personal-hero-2.jpg" alt="Cinematic preview" loading="lazy"></div>
-        <div class="style-body">
-          <div style="display:flex; gap:10px; align-items:center">
-            <h3 class="style-title">Federico — Cinematic</h3>
-            <span class="chip">Full-screen hero</span>
-            <span class="chip">Projects • Missions • Certs</span>
-            <span class="btn enter">Enter</span>
-          </div>
-          <p class="meta">Polished, recruiter-friendly overview with narrative “mission” cards.</p>
-        </div>
-      </a>
-
-      <!-- Hacker CRT -->
-      <a class="style-card crt" href="hacker.html" aria-label="Open Hacker CRT">
-        <div class="style-img"><img src="assets/cert-iso27001.jpg" alt="CRT style preview" loading="lazy"></div>
-        <div class="style-body">
-          <div style="display:flex; gap:10px; align-items:center">
-            <h3 class="style-title">Hacker — CRT</h3>
-            <span class="chip">Neon console UI</span>
-            <span class="chip">Boot panels & grid</span>
-            <span class="btn enter">Enter</span>
-          </div>
-          <p class="meta">Security-centric presentation mirroring a control panel.</p>
-        </div>
-      </a>
-
-      <!-- Redroom -->
-      <a class="style-card" href="redroom.html" aria-label="Open Redroom">
-        <div class="style-img"><img src="assets/personal-hero-1.jpg" alt="Red monochrome preview" loading="lazy" style="filter:grayscale(.2) contrast(1.1) saturate(1.2) hue-rotate(-20deg) brightness(.95)"></div>
-        <div class="style-body">
-          <div style="display:flex; gap:10px; align-items:center">
-            <h3 class="style-title">Redroom — Monochrome</h3>
-            <span class="chip">Bold silhouette</span>
-            <span class="chip">Gallery & details</span>
-            <span class="btn enter">Enter</span>
-          </div>
-          <p class="meta">Minimal, dramatic look focusing on person + credentials.</p>
-        </div>
-      </a>
-    </section>
-
-    <!-- RECENT MISSIONS -->
-    <section style="margin-top:6px" class="grid m-grid" aria-label="Recent missions">
-      <article class="pan">
-        <h3 class="m-title">Operation: Critical Infrastructure Migration</h3>
-        <p class="m-sub">Objective: move patient apps & data from legacy VM to new server.</p>
-        <ul class="ul">
-          <li>Planned & executed without downtime.</li>
-          <li>0 data loss; integrity verified post-cutover.</li>
-          <li>Hardening + baseline enforcement followed.</li>
-        </ul>
-        <a href="federico.html#missions">Open in Cinematic →</a>
-      </article>
-      <article class="pan">
-        <h3 class="m-title">Operation: Secure Application Deployment</h3>
-        <p class="m-sub">Objective: deploy external-facing E-reports with HTTPS/IIS.</p>
-        <ul class="ul">
-          <li>Configured DNS, domain binding, SSL/TLS.</li>
-          <li>Hardened IIS; logging & backups in place.</li>
-          <li>External access secured; stability improved.</li>
-        </ul>
-        <a href="hacker.html#missions">Open in Hacker →</a>
-      </article>
-    </section>
-
-    <!-- CERTS STRIP -->
-    <section style="margin-top:6px" class="grid certs" aria-label="Certifications">
-      <div class="pan thumb"><a href="assets/cert-gold.jpg" target="_blank" rel="noopener"><img alt="Gold Medal certificate" src="assets/cert-gold.jpg" loading="lazy"></a></div>
-      <div class="pan thumb"><a href="assets/cert-iso27001.jpg" target="_blank" rel="noopener"><img alt="ISO 27001 certificate" src="assets/cert-iso27001.jpg" loading="lazy"></a></div>
-      <div class="pan thumb"><a href="assets/cert-splunk.jpg" target="_blank" rel="noopener"><img alt="Splunk certificate" src="assets/cert-splunk.jpg" loading="lazy"></a></div>
-      <div class="pan thumb"><a href="assets/cert-pirple.jpg" target="_blank" rel="noopener"><img alt="Pirple White-Hat Hacking certificate" src="assets/cert-pirple.jpg" loading="lazy"></a></div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" style="margin-top:6px" class="pan contact" aria-label="Contact">
-      <div>
-        <p class="chip" style="margin:0 0 10px">CONTACT</p>
-        <h3 style="margin:0 0 8px">Initiate Contact Protocol</h3>
-        <p class="h-text" style="margin:0 0 14px">Email or phone preferred. Keyboard shortcuts: <span class="kbd">1</span> Cinematic, <span class="kbd">2</span> Hacker, <span class="kbd">3</span> Redroom.</p>
-        <div class="row" style="margin:8px 0">
-          <button class="copy" data-copy="abdullahjadoon75@gmail.com" aria-label="Copy email">📧 abdullahjadoon75@gmail.com</button>
-          <button class="copy" data-copy="+92 326 0726238" aria-label="Copy phone">📞 +92 326 0726238</button>
-          <span class="chip">📍 Karachi, Pakistan</span>
-        </div>
-        <div class="row" style="margin-top:8px">
-          <a class="btn ghost" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">GitHub</a>
-          <a class="btn ghost" href="https://www.linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">LinkedIn</a>
-          <a class="btn" href="assets/Abdullah_Jadoon_CV.pdf" download>Download CV</a>
-        </div>
-      </div>
-      <aside>
-        <h4 style="margin:0 0 8px">Capabilities Snapshot</h4>
-        <div class="token-row" style="margin-bottom:10px">
-          <span class="chip">Windows Server</span><span class="chip">IIS</span><span class="chip">Patch Mgmt</span><span class="chip">Backups</span>
-        </div>
-        <div class="token-row" style="margin-bottom:10px">
-          <span class="chip">OWASP Top 10</span><span class="chip">Burp Suite</span><span class="chip">OPSWAT</span><span class="chip">Kali</span>
-        </div>
-        <div class="token-row">
-          <span class="chip">MERN</span><span class="chip">JavaScript</span><span class="chip">Automation</span>
-        </div>
-      </aside>
     </section>
   </main>
 
-  <footer class="wrap">© 2025 Abdullah Jadoon — Portfolio Hub · <span style="color:#86b9ff">fast · accessible · recruiter-ready</span></footer>
-
   <script>
-    // Keyboard shortcuts
-    addEventListener('keydown', (e)=>{
-      if (['INPUT','TEXTAREA'].includes((document.activeElement||{}).tagName)) return;
-      if (e.key==='1') location.href='federico.html';
-      if (e.key==='2') location.href='hacker.html';
-      if (e.key==='3') location.href='redroom.html';
-    });
+    // --- Typewriter boot log ---
+    const lines = [
+      "> Welcome, Recruiter.",
+      "> Authorization requested: Abdullah Jadoon — Senior IT Support Officer & Security Specialist.",
+      "> Integrity checks ................................... OK",
+      "> Systems online: networking, backups, monitoring ..... OK",
+      "> Select entry point to proceed:"
+    ];
+    const out = document.getElementById("log");
 
-    // Copy buttons
-    document.querySelectorAll('.copy').forEach(btn=>{
-      btn.addEventListener('click', async ()=>{
-        try{
-          await navigator.clipboard.writeText(btn.dataset.copy);
-          const old = btn.textContent;
-          btn.textContent = '✓ Copied';
-          setTimeout(()=>btn.textContent = old, 1200);
-        }catch(err){ console.warn('Copy failed', err); }
-      });
-    });
+    function typeLine(text, i=0){
+      return new Promise(resolve=>{
+        const line = document.createElement("div");
+        line.className = "line";
+        out.appendChild(line);
 
-    // Subtle parallax on hero (reduced motion aware)
-    const prefersReduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const hero = document.getElementById('heroImg');
-    if(hero && !prefersReduced){
-      hero.addEventListener('mousemove', (e)=>{
-        const r = hero.getBoundingClientRect();
-        const rx = ((e.clientX - r.left)/r.width - .5) * 4;
-        const ry = ((e.clientY - r.top)/r.height - .5) * -4;
-        hero.style.transform = `perspective(900px) rotateX(${ry}deg) rotateY(${rx}deg)`;
+        const tick = () => {
+          line.textContent = text.slice(0, i) + (i < text.length ? "" : " ");
+          if(i < text.length){ i++; setTimeout(tick, 14 + Math.random()*12); }
+          else resolve();
+        };
+        tick();
       });
-      hero.addEventListener('mouseleave', ()=> hero.style.transform = 'perspective(900px) rotateX(0) rotateY(0)');
     }
 
-    // Tilt on style cards
-    document.querySelectorAll('.style-card').forEach(card=>{
-      if(prefersReduced) return;
-      card.addEventListener('mousemove', (e)=>{
-        const r = card.getBoundingClientRect();
-        const rx = ((e.clientX - r.left)/r.width - .5) * 6;
-        const ry = ((e.clientY - r.top)/r.height - .5) * -6;
-        card.style.transform = `translateY(-2px) rotateX(${ry}deg) rotateY(${rx}deg)`;
-      });
-      card.addEventListener('mouseleave', ()=> card.style.transform = '');
-    });
+    async function boot(){
+      for (const l of lines) { await typeLine(l); }
+      const caret = document.createElement("span");
+      caret.className = "caret";
+      caret.setAttribute("aria-hidden","true");
+      out.appendChild(caret);
+    }
+    boot();
 
-    // Preload a couple of images for snappy nav
-    ['assets/personal-hero-2.jpg','assets/cert-iso27001.jpg','assets/cert-gold.jpg'].forEach(src=>{
-      const img = new Image(); img.src = src;
-    });
+    // --- Keyboard shortcuts ---
+    const go = url => window.location.href = url;
+    window.addEventListener("keydown", (e)=>{
+      if (["INPUT","TEXTAREA"].includes((e.target.tagName||"").toUpperCase())) return;
+      if (e.key === "1") go("federico.html");
+      if (e.key === "2") go("hacker.html");
+      if (e.key === "3") go("redroom.html");
+    }, {passive:true});
   </script>
 </body>
 </html>
