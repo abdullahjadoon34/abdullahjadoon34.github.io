@@ -1,222 +1,248 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Abdullah Jadoon — Portfolio Hub</title>
-  <link rel="preload" as="image" href="assets/personal-hero-1.jpg">
-  <link rel="preload" as="image" href="assets/personal-hero-2.jpg">
-  <link rel="preload" as="image" href="assets/cert-iso27001.jpg">
-  <meta name="theme-color" content="#0b0e12" />
-  <style>
-    :root{
-      --bg:#0b0e12; --panel:#0f141b; --muted:#a7b3c2; --text:#e7edf4;
-      --accent:#2ea8ff; --accent-2:#00ff94; --ring:#2a3442; --glass:rgba(255,255,255,.04)
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font:15px/1.55 Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
-      color:var(--text); background:radial-gradient(80% 60% at 50% -10%, #14202c, var(--bg) 40%) fixed;
-      overflow-x:hidden;
-    }
-    /* dotted grid */
-    .grid{
-      position:fixed; inset:-200vh -200vw; pointer-events:none; opacity:.12; filter:contrast(110%);
-      background:
-        radial-gradient(#2a3442 1px, transparent 1.5px) 0 0/18px 18px,
-        radial-gradient(#2a3442 1px, transparent 1.5px) 9px 9px/18px 18px;
-      mask:radial-gradient(circle at 50% -20%,rgba(0,0,0,.7),rgba(0,0,0,0) 60%);
-    }
-    header{
-      position:sticky; top:0; z-index:10; backdrop-filter:saturate(120%) blur(8px);
-      background:linear-gradient(to bottom, rgba(11,14,18,.9), rgba(11,14,18,.4));
-      border-bottom:1px solid #16202b;
-    }
-    .bar{
-      max-width:1180px; margin:auto; padding:14px 20px; display:flex; gap:18px; align-items:center;
-    }
-    .dot{width:8px;height:8px;border-radius:50%;background:#13d16b;box-shadow:0 0 12px #13d16b}
-    .brand{font-weight:700; letter-spacing:.2px}
-    nav{margin-left:auto; display:flex; gap:14px; align-items:center; font-size:14px}
-    nav a{color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:8px}
-    nav a:hover{color:var(--text); background:var(--glass); outline:1px solid #1d2733}
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Abdullah Jadoon — Portfolio Hub</title>
+<meta name="description" content="Choose between Cinematic, Hacker/CRT, and Redroom monochrome portfolios for Abdullah Jadoon."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
+<style>
+  :root{
+    --bg:#0b0f14;
+    --panel:#0f131a;
+    --ink:#e8f0ff;
+    --muted:#9fb2cc;
+    --accent:#3ea6ff;
+    --ok:#3dffb6;
+    --warn:#ffc13e;
+    --line:#1b2430;
+    --glass:rgba(16,21,29,.66);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
 
-    main{max-width:1180px; margin:28px auto 80px; padding:0 20px}
-    .hero{
-      display:grid; grid-template-columns:1.4fr 1fr; gap:26px; align-items:stretch;
-      margin-bottom:26px;
-    }
-    .hero-card{
-      background:linear-gradient(180deg, #0e1319 0%, #0b0e12 100%);
-      border:1px solid #182430; border-radius:22px; overflow:hidden; position:relative;
-      box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 #1a2633;
-    }
-    .hero-card .badge{
-      position:absolute; left:18px; bottom:18px; padding:10px 14px;
-      background:linear-gradient(90deg, rgba(27,231,143,.18), rgba(46,168,255,.18));
-      border:1px solid #1e3b2f; border-radius:14px; backdrop-filter:blur(8px);
-      font-weight:600; letter-spacing:.2px
-    }
-    .hero-card img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92; transform:scale(1.01)}
-    .hero-panel{
-      padding:24px; border-radius:22px; border:1px solid #182430; background:rgba(21,28,36,.7);
-      display:flex; flex-direction:column; justify-content:space-between; gap:20px
-    }
-    .kicker{font:600 12px/1.2 "JetBrains Mono", ui-monospace, monospace; color:#9ab4cc; letter-spacing:.25ch}
-    h1{margin:8px 0 6px; font-weight:800; font-size:32px; line-height:1.15}
-    .sub{color:var(--muted)}
-    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
-    .btn{
-      padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700;
-      border:1px solid #1a2836; color:var(--text); background:#11161c;
-    }
-    .btn.primary{background:linear-gradient(180deg, #2ea8ff, #1b7dd6); border-color:#1b7dd6; color:#041018}
-    .btn:hover{filter:brightness(1.06)}
-    /* launcher tiles */
-    .tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
-    .tile{
-      position:relative; overflow:hidden; border-radius:20px; min-height:260px;
-      border:1px solid #1a2733; box-shadow:0 6px 30px rgba(0,0,0,.25); transform:translateZ(0);
-      background:#0f141b;
-    }
-    .tile > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.88; transition:transform .6s ease}
-    .tile:after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(0,0,0,.65));}
-    .tile:hover > img{transform:scale(1.06)}
-    .tile .label{
-      position:absolute; left:16px; bottom:16px; right:16px; z-index:2;
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-    }
-    .pill{
-      background:rgba(255,255,255,.08); border:1px solid #1e2b39; padding:8px 12px; border-radius:999px;
-      font-weight:700; letter-spacing:.2px; text-shadow:0 1px 0 rgba(0,0,0,.35)
-    }
-    .go{
-      padding:8px 12px; border-radius:10px; background:linear-gradient(180deg, #2ea8ff, #1578d2);
-      color:#041018; font-weight:800; text-decoration:none; border:1px solid #1466b1
-    }
-    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
-    .chip{border:1px solid #1a2836; padding:6px 10px; border-radius:999px; color:#a9bbcf; background:rgba(255,255,255,.03)}
-    footer{max-width:1180px; margin:40px auto 60px; padding:0 20px; color:#8fa3b7}
-    .kbd{padding:.1rem .45rem; border:1px solid #243244; background:#0d131a; border-radius:6px; font-family:"JetBrains Mono",monospace; font-size:.85em}
-    @media (max-width: 980px){
-      .hero{grid-template-columns:1fr}
-      .tiles{grid-template-columns:1fr; gap:14px}
-      h1{font-size:26px}
-    }
-  </style>
+  /* animated grid bg */
+  .bg{
+    position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(1200px 600px at 70% -10%, #173554 0%, transparent 55%),
+      radial-gradient(900px 700px at 10% 110%, #16263a 0%, transparent 60%),
+      #0a0e13;
+  }
+  .grid{
+    position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.18;
+    background-image:
+       linear-gradient(to right, #233142 1px, transparent 1px),
+       linear-gradient(to bottom, #233142 1px, transparent 1px);
+    background-size: 26px 26px;
+    animation:gridMove 18s linear infinite;
+  }
+  @keyframes gridMove{
+    0%{transform:translate3d(0,0,0)}
+    100%{transform:translate3d(-26px,-26px,0)}
+  }
+  @media (prefers-reduced-motion:reduce){
+    .grid{animation:none}
+  }
+
+  .wrap{max-width:1160px;margin:0 auto;padding:20px}
+
+  /* top mini-nav */
+  .mini{
+    display:flex;gap:18px;justify-content:flex-end;align-items:center;
+    font-size:12px;color:var(--muted)
+  }
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px var(--ok)}
+  .mini a{color:#cfe3ff;text-decoration:none;opacity:.9}
+  .mini a:hover{opacity:1}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin:14px 0 22px}
+  .photo{
+    position:relative;border-radius:24px;overflow:hidden;min-height:380px;
+    border:1px solid var(--line);box-shadow:0 25px 80px #0008
+  }
+  .photo img{width:100%;height:100%;object-fit:cover;transform:scale(1.02)}
+  .chip{
+    position:absolute;left:16px;bottom:16px;background:rgba(6,160,120,.15);
+    border:1px solid rgba(61,255,182,.45);backdrop-filter:blur(4px);
+    padding:8px 12px;border-radius:999px;font-size:12px;color:#bfffe7
+  }
+  .panel{
+    background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01)) , var(--glass);
+    border:1px solid var(--line);border-radius:24px;padding:22px;
+    box-shadow:0 20px 60px rgba(0,0,0,.45), inset 0 0 60px rgba(255,255,255,.02)
+  }
+  .kicker{color:#8fb0d6;letter-spacing:.25em;font-size:11px;margin:0 0 10px}
+  .h1{font-weight:900;line-height:1.08;font-size:32px;margin:0 0 10px}
+  .lead{color:#c8d8ee;line-height:1.6;margin:0 0 12px}
+
+  .btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:10px}
+  .btn{
+    --bg:rgba(62,166,255,.12);
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;
+    border-radius:12px;border:1px solid #25405d;background:var(--bg);color:#dff0ff;text-decoration:none;font-weight:600
+  }
+  .btn:hover{box-shadow:0 0 0 2px rgba(62,166,255,.25)}
+  .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+  .tag{border:1px solid #2b3d54;padding:6px 10px;border-radius:999px;color:#cfe3ff;font-size:12px;background:#0f1620}
+
+  /* preview cards row */
+  .row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin:14px 0 6px}
+  .card{
+    position:relative;border-radius:20px;overflow:hidden;height:230px;cursor:pointer;
+    border:1px solid var(--line);background:#0b1219;transform-style:preserve-3d;
+    transition:transform .25s ease, box-shadow .25s ease
+  }
+  .card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  .card:hover{box-shadow:0 18px 60px rgba(0,0,0,.45)}
+  .card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.95}
+  .veil{position:absolute;inset:0;background:linear-gradient(180deg,rgba(6,9,14,.0) 30%, #0b1219 90%)}
+  .pill{position:absolute;left:14px;bottom:58px;font-size:12px;color:#cfe3ff;border:1px solid #223548;background:#0d1722;padding:6px 10px;border-radius:999px}
+  .sub{position:absolute;left:14px;bottom:34px;font-size:12px;color:#9fb2cc}
+  .cta{
+    position:absolute;right:12px;bottom:12px;padding:8px 11px;border-radius:10px;
+    border:1px solid #284b74;background:linear-gradient(180deg,rgba(62,166,255,.18),rgba(62,166,255,.12));
+    color:#e9f4ff;font-weight:800;text-decoration:none
+  }
+  .cta:hover{box-shadow:0 0 0 2px rgba(62,166,255,.25)}
+
+  .kbd{margin-top:10px;color:#91a6c7;font-size:12px}
+  .kbd kbd{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+           background:#0e1621;border:1px solid #2a3a50;border-bottom-width:2px;padding:2px 6px;border-radius:6px;color:#cfe3ff}
+
+  @media (max-width:1050px){
+    .hero{grid-template-columns:1fr}
+    .row{grid-template-columns:1fr;gap:14px}
+  }
+</style>
 </head>
 <body>
-  <div class="grid" aria-hidden="true"></div>
+<div class="bg"></div>
+<div class="grid"></div>
 
-  <header>
-    <div class="bar" role="navigation" aria-label="top">
-      <div class="dot" aria-hidden="true"></div>
-      <div class="brand">Abdullah Jadoon — Portfolio Hub</div>
-      <nav>
-        <a href="federico.html" title="Cinematic style [1]">Federico</a>
-        <a href="hacker.html" title="Hacker CRT style [2]">Hacker</a>
-        <a href="redroom.html" title="Redroom style [3]">Redroom</a>
-      </nav>
-    </div>
-  </header>
+<div class="wrap">
+  <!-- tiny status + quick links -->
+  <div class="mini" aria-label="top status and quick nav">
+    <span class="dot" aria-hidden="true"></span>
+    <span>Abdullah Jadoon — <span style="color:#d6e6ff">Portfolio Hub</span></span>
+    <nav style="margin-left:auto;display:flex;gap:16px">
+      <a href="./federico.html">Federico</a>
+      <a href="./hacker.html">Hacker</a>
+      <a href="./redroom.html">Redroom</a>
+    </nav>
+  </div>
 
-  <main>
-    <!-- Above-the-fold: personal hero + elevator pitch -->
-    <section class="hero" aria-label="intro">
-      <figure class="hero-card" aria-label="Abdullah photo">
-        <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon portrait in Karachi waterfront" />
-        <figcaption class="badge">Security Architect • Karachi</figcaption>
-      </figure>
+  <!-- HERO -->
+  <section class="hero" aria-label="profile hero">
+    <figure class="photo" id="heroPhoto">
+      <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon — portrait" onerror="this.src='assets/PERSONAL.jpeg'"/>
+      <figcaption class="chip">Security Architect • Karachi</figcaption>
+    </figure>
 
-      <div class="hero-panel">
-        <div>
-          <div class="kicker">PROFILE</div>
-          <h1>Senior IT Support Officer &amp; Security Specialist</h1>
-          <p class="sub">
-            Proven in managing and securing healthcare IT infrastructure. I keep critical systems
-            available, enforce robust security protocols, and drive resilience—augmented by
-            vulnerability research and automation work.
-          </p>
-        </div>
-        <div class="cta-row">
-          <a class="btn primary" href="federico.html">Open Cinematic</a>
-          <a class="btn" href="hacker.html">Open Hacker</a>
-          <a class="btn" href="redroom.html">Open Redroom</a>
-          <div class="meta" aria-label="quick stats">
-            <span class="chip">Gold Medalist</span>
-            <span class="chip">ISO 27001</span>
-            <span class="chip">MERN + Ops</span>
-          </div>
-        </div>
+    <aside class="panel" id="heroPanel">
+      <p class="kicker">PROFILE</p>
+      <h1 class="h1">Senior IT Support Officer &amp; Security Specialist</h1>
+      <p class="lead">
+        Proven in managing and securing healthcare IT infrastructure.
+        Keeps critical systems available, enforces robust security protocols, and drives
+        resilience—augmented by vulnerability research and automation work.
+      </p>
+
+      <div class="btns" role="group" aria-label="open designs">
+        <a class="btn" href="federico.html" id="openFederico" aria-label="Open Cinematic">🎬 Open Cinematic</a>
+        <a class="btn" href="hacker.html" id="openHacker" aria-label="Open Hacker">🟢 Open Hacker</a>
+        <a class="btn" href="redroom.html" id="openRedroom" aria-label="Open Redroom">🔴 Open Redroom</a>
       </div>
-    </section>
 
-    <!-- Launch tiles -->
-    <section aria-label="launchers" class="tiles">
-      <!-- Federico -->
-      <article class="tile" aria-labelledby="t1">
-        <img src="assets/personal-hero-2.jpg" alt="">
-        <div class="label">
-          <div>
-            <div id="t1" class="pill">Federico — Cinematic</div>
-            <div class="meta">
-              <span class="chip">Full-screen hero</span>
-              <span class="chip">Projects, Missions, Certs</span>
-            </div>
-          </div>
-          <a class="go" href="federico.html" aria-label="Open Federico style">Enter</a>
-        </div>
-      </article>
+      <div class="tags" aria-label="highlights">
+        <span class="tag">Gold Medalist</span>
+        <span class="tag">ISO 27001</span>
+        <span class="tag">MERN + Ops</span>
+      </div>
+    </aside>
+  </section>
+
+  <!-- PREVIEW CARDS -->
+  <section aria-label="style previews">
+    <div class="row">
+      <!-- Cinematic -->
+      <a class="card tilt" href="federico.html" aria-label="Enter Cinematic style (1)">
+        <img loading="lazy" src="assets/personal-hero-1.jpg" alt="" onerror="this.src='assets/PERSONAL.jpeg'"/>
+        <div class="veil"></div>
+        <div class="pill">Federico — Cinematic</div>
+        <div class="sub">Full-screen hero • Projects, Missions, Certs</div>
+        <span class="cta">Enter</span>
+      </a>
 
       <!-- Hacker -->
-      <article class="tile" aria-labelledby="t2">
-        <img src="assets/cert-iso27001.jpg" alt="Abstract background">
-        <div class="label">
-          <div>
-            <div id="t2" class="pill">Hacker — CRT</div>
-            <div class="meta">
-              <span class="chip">Neon console</span>
-              <span class="chip">Boot panels &amp; grid</span>
-            </div>
-          </div>
-          <a class="go" href="hacker.html" aria-label="Open Hacker style">Enter</a>
-        </div>
-      </article>
+      <a class="card tilt" href="hacker.html" aria-label="Enter Hacker CRT style (2)">
+        <img loading="lazy" src="assets/cert-iso27001.jpg" alt="" onerror="this.style.display='none'"/>
+        <div class="veil"></div>
+        <div class="pill">Hacker — CRT</div>
+        <div class="sub">Boot panels &amp; grid • Neon console</div>
+        <span class="cta">Enter</span>
+      </a>
 
       <!-- Redroom -->
-      <article class="tile" aria-labelledby="t3">
-        <img src="assets/personal-hero-1.jpg" alt="">
-        <div class="label">
-          <div>
-            <div id="t3" class="pill">Redroom — Monochrome</div>
-            <div class="meta">
-              <span class="chip">Bold silhouette</span>
-              <span class="chip">Gallery &amp; details</span>
-            </div>
-          </div>
-          <a class="go" href="redroom.html" aria-label="Open Redroom style">Enter</a>
-        </div>
-      </article>
-    </section>
-  </main>
+      <a class="card tilt" href="redroom.html" aria-label="Enter Redroom style (3)">
+        <img loading="lazy" src="assets/personal-hero-2.jpg" alt="" onerror="this.src='assets/PERSONAL 1.jpeg'"/>
+        <div class="veil"></div>
+        <div class="pill">Redroom — Monochrome</div>
+        <div class="sub">Bold silhouette • Gallery &amp; details</div>
+        <span class="cta">Enter</span>
+      </a>
+    </div>
 
-  <footer>
-    <p>
-      Tips: press <span class="kbd">1</span> for Cinematic, <span class="kbd">2</span> for Hacker,
-      <span class="kbd">3</span> for Redroom • Valid HTML • Accessible landmarks • Deferred images preloaded.
+    <p class="kbd">
+      Tips: press <kbd>1</kbd> for Cinematic, <kbd>2</kbd> for Hacker, <kbd>3</kbd> for Redroom ·
+      Valid HTML • Accessible landmarks • Images lazy-loaded.
     </p>
-    <p>© 2025 Abdullah Jadoon</p>
-  </footer>
+  </section>
 
-  <script>
-    // Keyboard shortcuts for instant style switching
-    addEventListener('keydown', (e)=>{
-      if(['INPUT','TEXTAREA','SELECT'].includes((document.activeElement||{}).tagName)) return;
-      if(e.key==='1') location.href='federico.html';
-      if(e.key==='2') location.href='hacker.html';
-      if(e.key==='3') location.href='redroom.html';
+  <footer style="margin:22px 0;color:#8fa4c6">© 2025 Abdullah Jadoon</footer>
+</div>
+
+<script>
+/* ---------- Small interactions: keyboard shortcuts + hover tilt + gentle parallax ---------- */
+
+// Keyboard shortcuts: 1/2/3 open styles
+document.addEventListener('keydown', (e)=>{
+  if (['INPUT','TEXTAREA'].includes((e.target.tagName||'').toUpperCase())) return;
+  if (e.key==='1') location.href='federico.html';
+  if (e.key==='2') location.href='hacker.html';
+  if (e.key==='3') location.href='redroom.html';
+});
+
+// Hover tilt for cards (no tilt if user prefers reduced motion)
+const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce) {
+  document.querySelectorAll('.tilt').forEach(card=>{
+    const r = 10; // degrees
+    card.addEventListener('mousemove', (e)=>{
+      const rect = card.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width - .5;
+      const y = (e.clientY - rect.top)  / rect.height - .5;
+      card.style.transform = `rotateX(${(-y*r).toFixed(2)}deg) rotateY(${(x*r).toFixed(2)}deg)`;
     });
-  </script>
+    card.addEventListener('mouseleave', ()=> card.style.transform='rotateX(0) rotateY(0)');
+  });
+
+  // gentle parallax on hero photo/panel
+  const photo = document.getElementById('heroPhoto');
+  const panel = document.getElementById('heroPanel');
+  const parallax = (e)=>{
+    const {innerWidth:w, innerHeight:h} = window;
+    const cx = (e.clientX - w/2) / w, cy = (e.clientY - h/2) / h;
+    photo.style.transform = `translate3d(${cx*8}px, ${cy*6}px,0)`;
+    panel.style.transform = `translate3d(${cx*-6}px, ${cy*-4}px,0)`;
+  };
+  window.addEventListener('mousemove', parallax);
+}
+
+/* Preload big images for snappy first click */
+['assets/personal-hero-1.jpg','assets/personal-hero-2.jpg','assets/cert-iso27001.jpg']
+  .forEach(src=>{ const i=new Image(); i.src=src; });
+</script>
 </body>
 </html>
