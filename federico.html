@@ -1,173 +1,379 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abdullah Jadoon — Cinematic Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg:#0b0d0f; --panel:#0f1317; --text:#e8edf2; --muted:#9fb3c8; --accent:#1ea7ff;
-}
-*{box-sizing:border-box} html,body{height:100%} body{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(100% 100% at 50% 0%,#0e1216,#07090b);color:var(--text);}
-.topnav{position:fixed;top:16px;left:50%;transform:translateX(-50%);display:flex;gap:18px;z-index:40;background:rgba(15,19,23,.6);border:1px solid #1c232b;border-radius:999px;padding:10px 16px;backdrop-filter:blur(8px)}
-.topnav a{text-decoration:none;color:var(--muted)}
-.hero{position:relative;display:grid;grid-template-columns:1.2fr 1fr;gap:36px;min-height:88vh;padding:7vh 6vw 4vh;align-items:center}
-.hero .canvas{position:relative;border-radius:24px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.5)}
-.hero img{width:100%;height:70vh;object-fit:cover;filter:saturate(105%) contrast(110%) brightness(95%)}
-.badge{position:absolute;left:24px;bottom:24px;color:#eafff6;background:linear-gradient(135deg,#0d3a2b,#1d7f61);padding:10px 16px;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.35)}
-.card{background:var(--panel);border:1px solid #1b222a;border-radius:18px;padding:28px 28px 24px;box-shadow:0 10px 30px rgba(0,0,0,.35)}
-h1{font-weight:800;font-size:clamp(32px,6vw,58px);line-height:1.05;margin:.2em 0 .4em}
-h2.section{margin:56px 0 18px;font-size:20px;color:var(--muted);letter-spacing:.18em;text-transform:uppercase}
-.actions a{display:inline-block;margin-right:12px;padding:12px 18px;border-radius:10px;border:1px solid #2a3642;color:#dff2ff;text-decoration:none;background:#0e141a}
-.actions a.primary{background:var(--accent);color:#021c2b;border-color:#29b3ff}
-.grid{display:grid;gap:18px}
-.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}
-.exp-card{background:#0d1217;border:1px solid #1b2430;border-radius:14px;padding:18px}
-.exp-card header{display:flex;flex-wrap:wrap;gap:8px;justify-content:space-between;align-items:baseline}
-.exp-card ul{margin:.4em 0 .6em 1.1em}
-.mission{border:1px dashed #2b394a;border-radius:10px;padding:12px;margin-top:8px}
-.badge.success{display:inline-block;border:1px solid #1f4d36;border-radius:999px;padding:6px 10px;background:#0d2a1e;color:#7dffb1;margin-top:8px}
-.proj-card{background:#0d1217;border:1px solid #1b2430;border-radius:14px;padding:16px}
-.skill-group{background:#0d1217;border:1px solid #1b2430;border-radius:14px;padding:14px}
-.chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
-.chip{padding:6px 10px;border-radius:999px;background:#0b1823;border:1px solid #1e2b37;color:#acc7e5;font-size:12px}
-.cert-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
-.cert-card{background:#0d1217;border:1px solid #1b2430;border-radius:12px;overflow:hidden}
-.cert-card img{width:100%;height:220px;object-fit:cover;display:block;filter:contrast(105%) saturate(105%)}
-.cert-card figcaption{padding:12px 14px;color:#b7ccdf}
-.contact{background:#0d1217;border:1px solid #1b2430;border-radius:12px;padding:20px;margin-top:24px}
-footer{padding:40px 6vw 60px;color:#88a0b8}
-@media (max-width:980px){.hero{grid-template-columns:1fr;} .hero img{height:44vh}}
-</style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Abdullah Jadoon — Cinematic Portfolio</title>
+  <meta name="description" content="Abdullah Jadoon — Senior IT Support Officer & Security Specialist. Infrastructure, security operations, vulnerability research and MERN development." />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root{
+      --bg:#0b0e12;
+      --card:#12161c;
+      --muted:#9fb0c3;
+      --soft:#1a2028;
+      --ink:#e8f0ff;
+      --accent:#2da4ff;
+      --accent-2:#00d1b2;
+      --ok:#39d98a;
+      --warn:#ffc857;
+      --danger:#ff5c5c;
+      --ring: 0 0 0 2px #2da4ff55, 0 10px 30px #0009 inset;
+      --shadow: 0 12px 60px rgba(0,0,0,.45);
+      --radius: 20px;
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:radial-gradient(1200px 1200px at 10% 10%, #0e1319 25%, #0b0e12 60%), #0b0e12;color:var(--ink);font-family:Inter,system-ui,-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+    a{color:var(--accent);text-decoration:none}
+    .wrap{max-width:1200px;margin:0 auto;padding:24px}
+    /* Top bar */
+    .top{position:sticky;top:0;z-index:20;background:linear-gradient(#0b0e12cc,#0b0e12cc);backdrop-filter:saturate(1.2) blur(8px);border-bottom:1px solid #18202a}
+    .brand{display:flex;gap:10px;align-items:center;font-weight:800;letter-spacing:.4px}
+    .dot{width:10px;height:10px;border-radius:50%;background:var(--ok);box-shadow:0 0 0 6px #39d98a22}
+    .nav{display:flex;gap:18px;align-items:center;flex-wrap:wrap}
+    .nav a{color:#cde0ff;opacity:.88}
+    .nav a:hover{opacity:1}
+    .topgrid{display:flex;justify-content:space-between;align-items:center}
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:stretch;margin:32px 0 16px}
+    .panel{background:var(--card);border:1px solid #1b2430;border-radius:calc(var(--radius) + 6px);box-shadow:var(--shadow)}
+    .photo{position:relative;overflow:hidden}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(1.06) contrast(1.06)}
+    .label{position:absolute;left:18px;bottom:18px;background:linear-gradient(90deg,#084,#0a6ea8);padding:12px 16px;border-radius:16px;color:#eafff5;font-weight:700;box-shadow:0 6px 30px #0009;border:1px solid #0d483f}
+    .card{padding:28px}
+    .kicker{font-size:12px;letter-spacing:.25em;color:#9fb0c3;margin:0 0 6px}
+    h1{font-size:48px;line-height:1.05;margin:0 0 14px}
+    .summary{color:#c7d6ea;font-size:16px;line-height:1.6;margin:8px 0 18px}
+    .cta{display:flex;gap:12px;flex-wrap:wrap}
+    .btn{border:1px solid #273142;padding:11px 16px;border-radius:12px;font-weight:700;background:#121922;color:#e9f3ff}
+    .btn:hover{border-color:#31507e;box-shadow:var(--ring)}
+    .btn.primary{background:linear-gradient(180deg,#2da4ff,#1f7dd1);border-color:#2a6fb3;color:white}
+    .tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+    .tag{background:#111821;border:1px solid #1e2b3a;color:#a8c3e6;padding:6px 10px;border-radius:12px;font-size:12px}
+    /* Section headings */
+    section{margin:38px 0}
+    .sect-title{font-size:13px;color:#9fb0c3;letter-spacing:.35em;margin:0 0 16px}
+    /* Capability grid */
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .subcard{background:var(--soft);border:1px solid #1c2734;border-radius:16px;padding:18px}
+    .subcard h3{margin:0 0 10px;font-size:18px}
+    .pills{display:flex;gap:8px;flex-wrap:wrap}
+    .pill{padding:6px 10px;border-radius:999px;background:#121a22;border:1px solid #202e42;color:#b6c9e4;font-size:12px}
+    /* Experience */
+    .xpgrid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .role{background:var(--soft);border:1px solid #1c2734;border-radius:16px;padding:18px}
+    .role .head{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+    .company{color:#cbe0ff;font-weight:700}
+    .meta{color:#9fb0c3}
+    .bullets{margin:10px 0 0 0;padding-left:18px}
+    .op{margin-top:12px;border:1px dashed #2a3b50;border-radius:12px;padding:12px;background:#0f141b}
+    .chip{display:inline-block;background:#0f1b25;border:1px solid #25415f;color:#9fcaef;padding:4px 8px;border-radius:999px;font-size:12px;margin-right:8px}
+    /* Projects */
+    .proj{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .proj .subcard p{margin:.35rem 0 0;color:#cbdaf1}
+    .badge{font-family:"JetBrains Mono",monospace;font-size:12px;background:#0f1b25;border:1px solid #274463;color:#9fd3ff;padding:6px 10px;border-radius:10px;margin-right:6px}
+    /* Certifications gallery */
+    .certs{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .cert{background:var(--soft);border:1px solid #1c2734;border-radius:16px;overflow:hidden}
+    .cert img{display:block;width:100%;height:260px;object-fit:cover;filter:saturate(1.05)}
+    .cert .cap{padding:12px 14px}
+    .cap b{display:block}
+    /* Education */
+    .edu{display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+    /* Contact */
+    .contact{background:var(--soft);border:1px solid #1c2734;border-radius:16px;padding:18px}
+    .small{color:#9fb0c3}
+    footer{margin:36px 0 22px;color:#86a3c4}
+    /* Anchors pills */
+    .jumper{position:sticky;top:68px;margin:10px 0 18px;z-index:9}
+    .jumper .btn{background:#0f1620}
+    /* Responsive */
+    @media (max-width:1040px){
+      .hero{grid-template-columns:1fr;gap:18px}
+      .grid,.xpgrid,.proj,.certs,.edu{grid-template-columns:1fr}
+    }
+    /* Subtle grid background */
+    .bggrid{
+      position:fixed;inset:0;pointer-events:none;opacity:.18;
+      background-image:
+        radial-gradient(#18202a 1px, transparent 1px),
+        radial-gradient(#18202a 1px, transparent 1px);
+      background-size:24px 24px, 24px 24px;
+      background-position:0 0, 12px 12px;
+    }
+    /* Reveal on scroll */
+    .reveal{opacity:0;transform:translateY(10px);transition:all .6s ease}
+    .reveal.show{opacity:1;transform:none}
+  </style>
 </head>
 <body>
+<div class="bggrid"></div>
 
-<nav class="topnav">
-  <a href="index.html">Home</a>
-  <a href="federico.html">Federico</a>
-  <a href="hacker.html">Hacker</a>
-  <a href="redroom.html">Redroom</a>
-</nav>
-
-<section class="hero">
-  <div class="canvas">
-    <img src="assets/personal-hero-2.jpg" alt="Abdullah — cinematic hero">
-    <div class="badge">Security Architect • Karachi</div>
+<header class="top">
+  <div class="wrap topgrid">
+    <div class="brand"><span class="dot"></span><span>Abdullah Jadoon</span></div>
+    <nav class="nav">
+      <!-- style switcher -->
+      <a href="./index.html">Home</a>
+      <a href="./federico.html"><b>Federico</b></a>
+      <a href="./hacker.html">Hacker</a>
+      <a href="./redroom.html">Redroom</a>
+      <!-- page anchors -->
+      <a href="#capabilities">Capabilities</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
-  <div class="card">
-     <div style="color:#9bb4c9;text-transform:uppercase;letter-spacing:.3em">Profile</div>
-     <h1>Senior IT Support Officer & Security Specialist</h1>
-     <p style="color:#cfe3f7">A proven specialist in managing and securing critical healthcare IT infrastructure. I ensure high availability, enforce robust security protocols, and enhance system resilience. I augment my core responsibilities with proactive vulnerability research and automated tool development.</p>
-     <div class="actions" style="margin-top:10px">
-       <a class="primary" href="mailto:abdullahjadoon75@gmail.com">Contact</a>
-       <a href="https://github.com/abdullahjadoon34">GitHub</a>
-       <a href="https://www.linkedin.com/in/abdullah-k-jadoon/">LinkedIn</a>
-     </div>
+</header>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="panel photo reveal">
+      <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon" onerror="this.src='assets/PERSONAL.jpeg'">
+      <div class="label">Security Architect • Karachi</div>
+    </div>
+
+    <div class="panel card reveal" style="display:flex;flex-direction:column;justify-content:center">
+      <p class="kicker">PROFILE</p>
+      <h1>Senior IT Support Officer<br>&amp; Security Specialist</h1>
+      <p class="summary">
+        A proven specialist in managing and securing critical healthcare IT infrastructure. I ensure high availability,
+        enforce robust security protocols, and enhance system resilience. I augment my core responsibilities with proactive
+        vulnerability research and automated tool development.
+      </p>
+      <div class="cta">
+        <a class="btn primary" href="#contact">Contact</a>
+        <a class="btn" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn" href="assets/Abdullah_Jadoon_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+      </div>
+      <div class="tags">
+        <span class="tag">> Gold Medalist</span>
+        <span class="tag">Cum Laude</span>
+        <span class="tag">Infrastructure & Vulnerability Management</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ANCHOR PILLS -->
+  <div class="jumper wrap" style="padding:0">
+    <div class="cta">
+      <a class="btn" href="#capabilities">System Capabilities</a>
+      <a class="btn" href="#experience">Mission Log</a>
+      <a class="btn" href="#projects">Active Development</a>
+      <a class="btn" href="#certs">Security Clearances</a>
+      <a class="btn" href="#education">Education</a>
+      <a class="btn" href="#contact">Contact</a>
+    </div>
   </div>
-</section>
 
-<main style="padding: 0 6vw">
-  <h2 class="section">System Capabilities</h2>
-  <div class="grid two"><div class='skill-group'><h4>System Administration</h4><div class='chips'><span class='chip'>Windows Server</span><span class='chip'>IIS</span><span class='chip'>Patch Mgmt</span><span class='chip'>Backups</span><span class='chip'>Helpdesk</span></div></div>
-<div class='skill-group'><h4>Security</h4><div class='chips'><span class='chip'>OWASP Top 10</span><span class='chip'>Burp Suite</span><span class='chip'>Kali</span><span class='chip'>OPSWAT MetaDefender</span></div></div>
-<div class='skill-group'><h4>Development</h4><div class='chips'><span class='chip'>MERN Stack</span><span class='chip'>JavaScript</span><span class='chip'>HTML/CSS</span></div></div>
-<div class='skill-group'><h4>Networking</h4><div class='chips'><span class='chip'>IP Config</span><span class='chip'>Troubleshooting</span></div></div></div>
-
-  <h2 class="section">Mission Log / Key Operations</h2>
-  <div class="grid two">
-        <article class="exp-card">
-          <header><h3>Senior IT Support Officer</h3><span>Patient’s Aid Foundation (Jinnah Hospital, Karachi)</span><time>Aug 2025 – Present</time></header>
-          <ul><li>Maintain and harden mission‑critical servers; ensure availability for clinical ops.</li><li>Enforce patch policy, security baselines, and UAT before rollouts.</li><li>Own vendor coordination and user training.</li></ul>
-          
-            <div class="mission">
-                <div class="mission-title">OPERATION: CRITICAL INFRASTRUCTURE MIGRATION</div>
-                <p>Led a secure migration of all patient data and critical apps from legacy VM to a new physical server.</p>
-                <div class="badge success">Zero data loss. Minimal downtime. Systems verified.</div>
-            </div>
-            
-        </article>
-        
-
-        <article class="exp-card">
-          <header><h3>IT Support Officer</h3><span>Patient’s Aid Foundation (Jinnah Hospital, Karachi)</span><time>May 2024 – Aug 2025</time></header>
-          <ul><li>Resolved high‑volume tickets; maintained backups and reports.</li><li>Improved stability with proactive patching and monitoring.</li></ul>
-          
-            <div class="mission">
-                <div class="mission-title">OPERATION: SECURE APPLICATION DEPLOYMENT</div>
-                <p>Deployed hospital E‑reports from code to production; configured domain & IIS and enforced SSL.</p>
-                <div class="badge success">HTTPS enforced. External access secured.</div>
-            </div>
-            
-        </article>
-        
-
-        <article class="exp-card">
-          <header><h3>Freelance Bug Bounty Researcher (Part‑time)</h3><span>Self</span><time>Aug 2022 – Present</time></header>
-          <ul><li>Recon, OWASP Top 10 testing with Burp Suite & Kali.</li></ul>
-          
-        </article>
-        
-
-        <article class="exp-card">
-          <header><h3>MERN Stack Developer Intern</h3><span>isTech LLC, Karachi</span><time>Sep 2021 – Dec 2021</time></header>
-          <ul><li>React app features; Node email integration.</li></ul>
-          
-        </article>
+  <!-- CAPABILITIES -->
+  <section id="capabilities" class="reveal">
+    <p class="sect-title">> SYSTEM CAPABILITIES</p>
+    <div class="grid">
+      <div class="subcard">
+        <h3>System Administration</h3>
+        <div class="pills">
+          <span class="pill">Windows Server</span><span class="pill">IIS</span><span class="pill">Patch Mgmt</span>
+          <span class="pill">Backups</span><span class="pill">Helpdesk</span>
         </div>
-
-  <h2 class="section">Active Development</h2>
-  <div class="grid two">
-    <article class="proj-card">
-      <h3>bbdash — Bug Bounty Dashboard Toolkit</h3>
-      <p>Automated Kali toolkit that streamlines recon, vulnerability scanning & report generation.</p>
-      <div class="tags">STATUS: ACTIVE • TECH: Bash, Python • ENV: Kali</div>
-    </article>
-    
-
-    <article class="proj-card">
-      <h3>Client React App (internship)</h3>
-      <p>Production React + Node app with contact/email module and clean UI.</p>
-      <div class="tags">React • Node • UI</div>
-    </article>
+      </div>
+      <div class="subcard">
+        <h3>Security</h3>
+        <div class="pills">
+          <span class="pill">OWASP Top 10</span><span class="pill">Burp Suite</span>
+          <span class="pill">Kali</span><span class="pill">OPSWAT MetaDefender</span>
+        </div>
+      </div>
+      <div class="subcard">
+        <h3>Development</h3>
+        <div class="pills">
+          <span class="pill">MERN Stack</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span>
+          <span class="pill">Automation</span>
+        </div>
+      </div>
+      <div class="subcard">
+        <h3>Networking</h3>
+        <div class="pills">
+          <span class="pill">IP Config</span><span class="pill">Troubleshooting</span><span class="pill">Diagnostics</span>
+        </div>
+      </div>
     </div>
+  </section>
 
-  <h2 class="section">Security Clearances</h2>
-  <div class="cert-grid">
-        <figure class="cert-card">
-            <img loading="lazy" src="assets/cert-gold.jpg" alt="Gold Medal — Academic Excellence">
-            <figcaption><strong>Gold Medal — Academic Excellence</strong><br><span>Bahria University — 2025</span></figcaption>
-        </figure>
+  <!-- EXPERIENCE -->
+  <section id="experience" class="reveal">
+    <p class="sect-title">> MISSION LOG / KEY OPERATIONS</p>
 
-        <figure class="cert-card">
-            <img loading="lazy" src="assets/cert-iso27001.jpg" alt="ISO/IEC 27001 Information Security Associate">
-            <figcaption><strong>ISO/IEC 27001 Information Security Associate</strong><br><span>Skillfront — 2024</span></figcaption>
-        </figure>
+    <div class="xpgrid">
+      <!-- Current -->
+      <div class="role">
+        <div class="head">
+          <div>
+            <div class="company">Senior IT Support Officer — Patient’s Aid Foundation (Jinnah Hospital, Karachi)</div>
+            <div class="meta">Aug 2025 – Present</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Maintain and harden mission-critical servers; ensure availability for clinical operations.</li>
+          <li>Enforce patch policy, security baselines, and UAT before rollouts; proactive monitoring.</li>
+          <li>Own vendor coordination and user training; reduce downtime through preventive maintenance.</li>
+        </ul>
 
-        <figure class="cert-card">
-            <img loading="lazy" src="assets/cert-pirple.jpg" alt="OPSWAT File Security Associate (OFSA)">
-            <figcaption><strong>OPSWAT File Security Associate (OFSA)</strong><br><span>OPSWAT Academy — 2023</span></figcaption>
-        </figure>
+        <div class="op">
+          <span class="chip">OPERATION: CRITICAL INFRASTRUCTURE MIGRATION</span>
+          <p>Led secure migration of all patient data and critical applications from legacy VM to a new physical server.</p>
+          <p><b>Outcome:</b> Systems operational; <b>zero data loss</b>; <b>near-zero downtime</b>.</p>
+        </div>
+      </div>
 
-        <figure class="cert-card">
-            <img loading="lazy" src="assets/cert-pirple.jpg" alt="Cyber Security: White‑Hat Ethical Hacking">
-            <figcaption><strong>Cyber Security: White‑Hat Ethical Hacking</strong><br><span>Pirple — 2022</span></figcaption>
-        </figure>
+      <!-- Previous -->
+      <div class="role">
+        <div class="head">
+          <div>
+            <div class="company">IT Support Officer — Patient’s Aid Foundation (Jinnah Hospital, Karachi)</div>
+            <div class="meta">May 2024 – Aug 2025</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Resolved high-volume tickets; maintained backups and reporting cadence.</li>
+          <li>Improved stability with proactive patching and health checks.</li>
+        </ul>
 
-        <figure class="cert-card">
-            <img loading="lazy" src="assets/cert-splunk.jpg" alt="Splunk: Security Operations and the Defense Analyst">
-            <figcaption><strong>Splunk: Security Operations and the Defense Analyst</strong><br><span>Splunk — 2025</span></figcaption>
-        </figure></div>
+        <div class="op">
+          <span class="chip">OPERATION: SECURE APPLICATION DEPLOYMENT</span>
+          <p>Deployed hospital E-reports app from code to production; configured domain & IIS; enforced SSL.</p>
+          <p><b>Outcome:</b> HTTPS enforced; external access secured.</p>
+        </div>
+      </div>
 
-  <div class="contact">
-    <strong>Contact</strong>
-    <div style="margin-top:8px;color:#98b3cb">
-      Email: <a href="mailto:abdullahjadoon75@gmail.com">abdullahjadoon75@gmail.com</a> • Phone: +92 326 0726238 • Location: Karachi, Pakistan
+      <!-- Bug bounty -->
+      <div class="role">
+        <div class="head">
+          <div>
+            <div class="company">Bug Bounty Researcher — Freelance (Part-time)</div>
+            <div class="meta">Aug 2022 – Present</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Recon & vulnerability validation aligned to OWASP Top 10.</li>
+          <li>Hands-on workflow with Burp Suite & Kali; custom tooling for recon and reporting.</li>
+        </ul>
+      </div>
+
+      <!-- Internship -->
+      <div class="role">
+        <div class="head">
+          <div>
+            <div class="company">MERN Stack Developer Intern — isTech LLC, Karachi</div>
+            <div class="meta">Sep 2021 – Dec 2021</div>
+          </div>
+        </div>
+        <ul class="bullets">
+          <li>Delivered production React features with Node email integration; contributed to clean UI patterns.</li>
+        </ul>
+      </div>
     </div>
-  </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="reveal">
+    <p class="sect-title">> ACTIVE DEVELOPMENT</p>
+    <div class="proj">
+      <div class="subcard">
+        <h3>bbdash — Bug Bounty Dashboard Toolkit</h3>
+        <p>Automated Kali toolkit that streamlines reconnaissance, vulnerability scanning & report generation.</p>
+        <p style="margin-top:8px">
+          <span class="badge">STATUS: ACTIVE</span>
+          <span class="badge">TECH: Bash, Python</span>
+          <span class="badge">ENV: Kali</span>
+        </p>
+      </div>
+      <div class="subcard">
+        <h3>Client React App (Internship)</h3>
+        <p>Production Ready: React + Node app with contact/email module and clean UI.</p>
+        <p style="margin-top:8px">
+          <span class="badge">React</span>
+          <span class="badge">Node</span>
+          <span class="badge">UI</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTIFICATIONS -->
+  <section id="certs" class="reveal">
+    <p class="sect-title">> SECURITY CLEARANCES</p>
+    <div class="certs">
+      <div class="cert">
+        <img src="assets/cert-gold.jpg" alt="Gold Medal — Academic Excellence" onerror="this.style.display='none'">
+        <div class="cap"><b>Gold Medal — Academic Excellence</b>Bahria University — 2025</div>
+      </div>
+      <div class="cert">
+        <img src="assets/cert-iso27001.jpg" alt="ISO/IEC 27001 Information Security Associate" onerror="this.style.display='none'">
+        <div class="cap"><b>ISO/IEC 27001 Information Security Associate</b>Skillfront — 2024</div>
+      </div>
+      <div class="cert">
+        <img src="assets/cert-splunk.jpg" alt="Splunk: Security Operations and the Defense Analyst" onerror="this.style.display='none'">
+        <div class="cap"><b>Splunk: Security Operations and the Defense Analyst</b>Splunk — 2025</div>
+      </div>
+      <div class="cert">
+        <img src="assets/cert-pirple.jpg" alt="Cyber Security: White-Hat Ethical Hacking" onerror="this.style.display='none'">
+        <div class="cap"><b>Cyber Security: White-Hat Ethical Hacking</b>Pirple — 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="reveal">
+    <p class="sect-title">> EDUCATION</p>
+    <div class="edu">
+      <div class="subcard">
+        <h3>Bahria University — BS (IT)</h3>
+        <p class="small">Karachi Campus • <b>Cum Laude</b> • CGPA 3.68</p>
+        <p>Graduated with distinction and awarded the University <b>Gold Medal</b> for Academic Excellence.</p>
+      </div>
+      <div class="subcard">
+        <h3>Highlights</h3>
+        <div class="pills">
+          <span class="pill">System Security</span>
+          <span class="pill">Database Basics</span>
+          <span class="pill">Programming</span>
+          <span class="pill">Networks</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="reveal">
+    <p class="sect-title">> INITIATE CONTACT PROTOCOL</p>
+    <div class="contact">
+      <p><b>Email:</b> <a href="mailto:abdullahjadoon75@gmail.com">abdullahjadoon75@gmail.com</a></p>
+      <p><b>Phone:</b> +92 326 0726238</p>
+      <p><b>Location:</b> Karachi, Pakistan</p>
+      <div class="pills" style="margin-top:8px">
+        <a class="pill" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">github.com/abdullahjadoon34</a>
+        <a class="pill" href="https://linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">linkedin.com/in/abdullah-k-jadoon</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="reveal">
+    © 2025 Abdullah Jadoon — Cinematic portfolio
+  </footer>
 </main>
 
-<footer>© 2025 Abdullah Jadoon — Cinematic portfolio</footer>
+<script>
+  // reveal on scroll
+  const obs = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('show') })
+  }, {threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
 </body>
 </html>
