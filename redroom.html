@@ -1,120 +1,284 @@
-<!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
 <title>Abdullah Jadoon — Redroom</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+<meta name="description" content="Abdullah Jadoon — Senior IT Support Officer & Security Specialist. Minimal red monochrome portfolio."/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap" rel="stylesheet"/>
 <style>
-:root{--red:#e0102a;--bg:#0b0002;--muted:#ff97a4}
-*{box-sizing:border-box} body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;background:radial-gradient(100% 80% at 50% 0%,#230005 0,#0b0002 60%);color:#fff}
-.topnav{position:fixed;top:14px;left:50%;transform:translateX(-50%);display:flex;gap:18px;z-index:10}
-.topnav a{color:#ffd4d8;text-decoration:none}
-.hero{min-height:88vh;display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center;padding:6vh 6vw}
-.frame{position:relative;border-radius:20px;overflow:hidden;box-shadow:0 30px 90px rgba(224,16,42,.35)}
-.frame::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(224,16,42,.35),transparent 50%,rgba(0,0,0,.5));mix-blend-mode:screen}
-.frame img{width:100%;height:72vh;object-fit:cover;filter:grayscale(.15) sepia(.2) contrast(120%) saturate(130%)}
-h1{font-size:clamp(34px,7vw,72px);margin:0 0 .2em;font-weight:900;letter-spacing:.02em}
-.tag{color:var(--muted);text-transform:uppercase;letter-spacing:.25em;margin-bottom:10px}
-.pill{display:inline-block;border:1px solid #4a0710;background:rgba(224,16,42,.08);color:#ffc6cf;padding:10px 14px;border-radius:999px;margin-right:8px;text-decoration:none}
-.section{padding:0 6vw 36px}
-.grid{display:grid;gap:16px}
-.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:rgba(224,16,42,.06);border:1px solid #3a0811;border-radius:16px;padding:16px}
-.cert img{width:100%;height:220px;object-fit:cover;display:block;border-bottom:1px solid #3a0811}
-footer{padding:36px 6vw 60px;color:#ffb4be}
-@media (max-width:960px){.hero{grid-template-columns:1fr} .frame img{height:44vh}}
+  :root{
+    --bg:#090203;
+    --ink:#fff3f3;
+    --muted:#ffb3b3;
+    --card:#140406;
+    --accent:#ff2a2a;
+    --line:#2a0a0d;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:radial-gradient(1000px 1000px at 70% 10%, #120305 20%, #090203 60%), #090203;color:var(--ink);font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}
+  a{color:#ffd6d6;text-decoration:none}
+  .wrap{max-width:1160px;margin:0 auto;padding:22px}
+  /* top nav */
+  .top{position:sticky;top:0;z-index:20;background:#090203cc;border-bottom:1px solid var(--line);backdrop-filter:blur(6px)}
+  .brand{font-weight:900;letter-spacing:.4px}
+  .nav a{margin-left:16px;color:#ffd6d6;opacity:.9}
+  .nav a:hover{opacity:1}
+  .row{display:flex;justify-content:space-between;align-items:center}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:1.05fr .95fr;gap:22px;margin:24px 0 10px}
+  .portrait{
+    position:relative;border-radius:22px;overflow:hidden;background:#000;min-height:420px;
+    border:1px solid var(--line);box-shadow:0 30px 80px #0008
+  }
+  .portrait::after{
+    /* red wash overlay */
+    content:"";position:absolute;inset:0;background:linear-gradient(#b80000aa,#b80000dd 70%);mix-blend-mode:screen
+  }
+  .portrait img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%) contrast(1.1) brightness(.9)}
+  .badge{position:absolute;left:16px;bottom:16px;background:#b80000;border:1px solid #ff5a5a;padding:10px 14px;border-radius:999px;color:white;font-weight:800}
+
+  .card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:0 10px 60px #000a}
+  .kicker{color:var(--muted);letter-spacing:.25em;font-size:12px;margin:0 0 8px}
+  h1{font-size:46px;line-height:1.05;margin:0 0 10px}
+  .lead{color:#ffdada;line-height:1.65}
+
+  .pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+  .pill{border:1px solid #3a0b10;color:#ffcccc;padding:6px 10px;border-radius:999px;background:#100305;font-size:12px}
+
+  .jumper{position:sticky;top:64px;margin:8px 0 16px;z-index:10}
+  .btn{display:inline-block;border:1px solid #3a0b10;background:#110205;padding:10px 14px;border-radius:999px;color:#ffd6d6;margin:6px 8px 0 0}
+  .btn:hover{border-color:#5a0d14;box-shadow:0 0 0 2px #ff3a3a22}
+
+  /* sections */
+  section{margin:34px 0}
+  .title{color:#ffbebe;letter-spacing:.3em;font-size:12px;margin:0 0 12px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .sub{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px}
+  .sub h3{margin:0 0 8px}
+  .xp{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .op{margin-top:10px;border:1px dashed #4a1016;border-radius:12px;padding:10px;background:#0d0507}
+
+  .certs{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cert img{width:100%;height:240px;object-fit:cover;display:block;filter:grayscale(20%) contrast(1.05)}
+  .cap{padding:10px}
+
+  .edu{display:grid;grid-template-columns:1.2fr .8fr;gap:16px}
+
+  @media (max-width:1024px){
+    .hero,.grid,.xp,.certs,.edu{grid-template-columns:1fr}
+  }
 </style>
 </head>
 <body>
-
-<nav class="topnav">
-  <a href="index.html">Home</a>
-  <a href="federico.html">Federico</a>
-  <a href="hacker.html">Hacker</a>
-  <a href="redroom.html">Redroom</a>
-</nav>
-
-<section class="hero">
-  <div class="frame"><img src="assets/personal-hero-2.jpg" alt="Abdullah portrait redwash"></div>
-  <div>
-    <div class="tag">> Gold Medalist | Cum Laude | Infrastructure & Vulnerability Management</div>
-    <h1>Abdullah Jadoon</h1>
-    <p style="color:#ffdbe0;max-width:60ch">A proven specialist in managing and securing critical healthcare IT infrastructure. I ensure high availability, enforce robust security protocols, and enhance system resilience. I augment my core responsibilities with proactive vulnerability research and automated tool development.</p>
-    <div style="margin-top:12px">
-      <a class="pill" href="mailto:abdullahjadoon75@gmail.com">Email</a>
-      <a class="pill" href="https://github.com/abdullahjadoon34">GitHub</a>
-      <a class="pill" href="https://www.linkedin.com/in/abdullah-k-jadoon/">LinkedIn</a>
-    </div>
+<header class="top">
+  <div class="wrap row" style="padding:10px 0">
+    <div class="brand">Abdullah Jadoon</div>
+    <nav class="nav">
+      <a href="./index.html">Home</a>
+      <a href="./federico.html">Federico</a>
+      <a href="./hacker.html">Hacker</a>
+      <a href="./redroom.html"><b>Redroom</b></a>
+      <a href="#capabilities">Capabilities</a>
+      <a href="#experience">Experience</a>
+      <a href="#projects">Projects</a>
+      <a href="#certs">Certifications</a>
+      <a href="#education">Education</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
-</section>
+</header>
 
-<section class="section">
-  <h2 style="letter-spacing:.2em;color:#ff97a4;text-transform:uppercase">Experience</h2>
-  <div class="grid two">
-        <article class="exp-card">
-          <header><h3>Senior IT Support Officer</h3><span>Patient’s Aid Foundation (Jinnah Hospital, Karachi)</span><time>Aug 2025 – Present</time></header>
-          <ul><li>Maintain and harden mission‑critical servers; ensure availability for clinical ops.</li><li>Enforce patch policy, security baselines, and UAT before rollouts.</li><li>Own vendor coordination and user training.</li></ul>
-          
-            <div class="mission">
-                <div class="mission-title">OPERATION: CRITICAL INFRASTRUCTURE MIGRATION</div>
-                <p>Led a secure migration of all patient data and critical apps from legacy VM to a new physical server.</p>
-                <div class="badge success">Zero data loss. Minimal downtime. Systems verified.</div>
-            </div>
-            
-        </article>
-        
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="portrait">
+      <img src="assets/personal-hero-2.jpg" alt="Abdullah" onerror="this.src='assets/PERSONAL 1.jpeg'"/>
+      <div class="badge">Security Architect • Karachi</div>
+    </div>
+    <div class="card">
+      <p class="kicker">PROFILE</p>
+      <h1>Infrastructure &amp; Security Specialist</h1>
+      <p class="lead">
+        I manage and secure healthcare infrastructure—availability, patching, baselines and resilient systems—augmented
+        by vulnerability research and automation.
+      </p>
+      <div class="pills">
+        <span class="pill">Gold Medalist</span><span class="pill">Cum Laude</span><span class="pill">Infra &amp; Vulnerability Mgmt</span>
+        <a class="btn" href="assets/Abdullah_Jadoon_CV.pdf" target="_blank" rel="noopener">Download CV</a>
+        <a class="btn" href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">GitHub</a>
+        <a class="btn" href="https://linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </section>
 
-        <article class="exp-card">
-          <header><h3>IT Support Officer</h3><span>Patient’s Aid Foundation (Jinnah Hospital, Karachi)</span><time>May 2024 – Aug 2025</time></header>
-          <ul><li>Resolved high‑volume tickets; maintained backups and reports.</li><li>Improved stability with proactive patching and monitoring.</li></ul>
-          
-            <div class="mission">
-                <div class="mission-title">OPERATION: SECURE APPLICATION DEPLOYMENT</div>
-                <p>Deployed hospital E‑reports from code to production; configured domain & IIS and enforced SSL.</p>
-                <div class="badge success">HTTPS enforced. External access secured.</div>
-            </div>
-            
-        </article>
-        
+  <!-- quick anchors -->
+  <div class="jumper">
+    <a class="btn" href="#capabilities">System Capabilities</a>
+    <a class="btn" href="#experience">Mission Log</a>
+    <a class="btn" href="#projects">Active Development</a>
+    <a class="btn" href="#certs">Security Clearances</a>
+    <a class="btn" href="#education">Education</a>
+    <a class="btn" href="#contact">Contact</a>
+  </div>
 
-        <article class="exp-card">
-          <header><h3>Freelance Bug Bounty Researcher (Part‑time)</h3><span>Self</span><time>Aug 2022 – Present</time></header>
-          <ul><li>Recon, OWASP Top 10 testing with Burp Suite & Kali.</li></ul>
-          
-        </article>
-        
-
-        <article class="exp-card">
-          <header><h3>MERN Stack Developer Intern</h3><span>isTech LLC, Karachi</span><time>Sep 2021 – Dec 2021</time></header>
-          <ul><li>React app features; Node email integration.</li></ul>
-          
-        </article>
+  <!-- CAPABILITIES -->
+  <section id="capabilities">
+    <p class="title">> SYSTEM CAPABILITIES</p>
+    <div class="grid">
+      <div class="sub">
+        <h3>System Administration</h3>
+        <div class="pills">
+          <span class="pill">Windows Server</span><span class="pill">IIS</span><span class="pill">Patch Mgmt</span>
+          <span class="pill">Backups</span><span class="pill">Helpdesk</span>
         </div>
-</section>
-
-<section class="section">
-  <h2 style="letter-spacing:.2em;color:#ff97a4;text-transform:uppercase">Projects</h2>
-  <div class="grid two">
-    <article class="proj-card">
-      <h3>bbdash — Bug Bounty Dashboard Toolkit</h3>
-      <p>Automated Kali toolkit that streamlines recon, vulnerability scanning & report generation.</p>
-      <div class="tags">STATUS: ACTIVE • TECH: Bash, Python • ENV: Kali</div>
-    </article>
-    
-
-    <article class="proj-card">
-      <h3>Client React App (internship)</h3>
-      <p>Production React + Node app with contact/email module and clean UI.</p>
-      <div class="tags">React • Node • UI</div>
-    </article>
+      </div>
+      <div class="sub">
+        <h3>Security</h3>
+        <div class="pills">
+          <span class="pill">OWASP Top 10</span><span class="pill">Burp Suite</span>
+          <span class="pill">Kali</span><span class="pill">OPSWAT MetaDefender</span>
+        </div>
+      </div>
+      <div class="sub">
+        <h3>Development</h3>
+        <div class="pills">
+          <span class="pill">MERN Stack</span><span class="pill">JavaScript</span><span class="pill">HTML/CSS</span>
+          <span class="pill">Automation</span>
+        </div>
+      </div>
+      <div class="sub">
+        <h3>Networking</h3>
+        <div class="pills">
+          <span class="pill">IP Config</span><span class="pill">Troubleshooting</span><span class="pill">Diagnostics</span>
+        </div>
+      </div>
     </div>
-</section>
+  </section>
 
-<section class="section">
-  <h2 style="letter-spacing:.2em;color:#ff97a4;text-transform:uppercase">Clearances</h2>
-  <div class="grid two">
-    <div class="card cert"><img src="assets/cert-gold.jpg" alt="Gold Medal — Academic Excellence"><div style="padding-top:8px"><strong>Gold Medal — Academic Excellence</strong><br><span style="color:#ffc6cf">Bahria University — 2025</span></div></div><div class="card cert"><img src="assets/cert-iso27001.jpg" alt="ISO/IEC 27001 Information Security Associate"><div style="padding-top:8px"><strong>ISO/IEC 27001 Information Security Associate</strong><br><span style="color:#ffc6cf">Skillfront — 2024</span></div></div><div class="card cert"><img src="assets/cert-pirple.jpg" alt="OPSWAT File Security Associate (OFSA)"><div style="padding-top:8px"><strong>OPSWAT File Security Associate (OFSA)</strong><br><span style="color:#ffc6cf">OPSWAT Academy — 2023</span></div></div><div class="card cert"><img src="assets/cert-pirple.jpg" alt="Cyber Security: White‑Hat Ethical Hacking"><div style="padding-top:8px"><strong>Cyber Security: White‑Hat Ethical Hacking</strong><br><span style="color:#ffc6cf">Pirple — 2022</span></div></div><div class="card cert"><img src="assets/cert-splunk.jpg" alt="Splunk: Security Operations and the Defense Analyst"><div style="padding-top:8px"><strong>Splunk: Security Operations and the Defense Analyst</strong><br><span style="color:#ffc6cf">Splunk — 2025</span></div></div>
-  </div>
-</section>
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <p class="title">> MISSION LOG / KEY OPERATIONS</p>
+    <div class="xp">
+      <div class="sub">
+        <h3>Senior IT Support Officer — Patient’s Aid Foundation (Jinnah Hospital, Karachi)</h3>
+        <div class="pill" style="margin:6px 0">Aug 2025 – Present</div>
+        <ul>
+          <li>Harden mission-critical servers; ensure availability for clinical ops.</li>
+          <li>Patch policy, security baselines, UAT; proactive monitoring.</li>
+          <li>Vendor coordination & training to reduce downtime.</li>
+        </ul>
+        <div class="op">
+          <b>OPERATION: CRITICAL INFRASTRUCTURE MIGRATION</b>
+          <p>Secure migration of patient data & apps from legacy VM to new physical server.</p>
+          <p><b>Outcome:</b> Zero data loss; minimal downtime; systems verified.</p>
+        </div>
+      </div>
 
-<footer>© 2025 Abdullah Jadoon — Redroom</footer>
-</body></html>
+      <div class="sub">
+        <h3>IT Support Officer — Patient’s Aid Foundation (Jinnah Hospital, Karachi)</h3>
+        <div class="pill" style="margin:6px 0">May 2024 – Aug 2025</div>
+        <ul>
+          <li>Resolved high-volume tickets; maintained backups & reports.</li>
+          <li>Stability via proactive patching & monitoring.</li>
+        </ul>
+        <div class="op">
+          <b>OPERATION: SECURE APPLICATION DEPLOYMENT</b>
+          <p>Deployed E-reports app; domain & IIS; enforced SSL.</p>
+          <p><b>Outcome:</b> HTTPS enforced; external access secured.</p>
+        </div>
+      </div>
+
+      <div class="sub">
+        <h3>Bug Bounty Researcher — Freelance (Part-time)</h3>
+        <div class="pill" style="margin:6px 0">Aug 2022 – Present</div>
+        <ul>
+          <li>OWASP-aligned recon & vulnerability validation with Burp Suite & Kali.</li>
+          <li>Custom scripting for recon and reporting.</li>
+        </ul>
+      </div>
+
+      <div class="sub">
+        <h3>MERN Stack Developer Intern — isTech LLC, Karachi</h3>
+        <div class="pill" style="margin:6px 0">Sep 2021 – Dec 2021</div>
+        <ul>
+          <li>React features; Node email integration; clean UI delivery.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="title">> ACTIVE DEVELOPMENT</p>
+    <div class="grid">
+      <div class="sub">
+        <h3>bbdash — Bug Bounty Dashboard Toolkit</h3>
+        <p>Automates recon, vuln scanning & report generation.</p>
+        <div class="pills"><span class="pill">STATUS: ACTIVE</span><span class="pill">TECH: Bash, Python</span><span class="pill">ENV: Kali</span></div>
+      </div>
+      <div class="sub">
+        <h3>Client React App (Internship)</h3>
+        <p>Production React + Node app with contact/email module and clean UI.</p>
+        <div class="pills"><span class="pill">React</span><span class="pill">Node</span><span class="pill">UI</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs">
+    <p class="title">> SECURITY CLEARANCES</p>
+    <div class="certs">
+      <div class="sub">
+        <img src="assets/cert-gold.jpg" alt="Gold Medal — Academic Excellence" onerror="this.style.display='none'"/>
+        <div class="cap"><b>Gold Medal — Academic Excellence</b><br/>Bahria University — 2025</div>
+      </div>
+      <div class="sub">
+        <img src="assets/cert-iso27001.jpg" alt="ISO/IEC 27001 Information Security Associate" onerror="this.style.display='none'"/>
+        <div class="cap"><b>ISO/IEC 27001 Information Security Associate</b><br/>Skillfront — 2024</div>
+      </div>
+      <div class="sub">
+        <img src="assets/cert-splunk.jpg" alt="Splunk: Security Operations and the Defense Analyst" onerror="this.style.display='none'"/>
+        <div class="cap"><b>Splunk: Security Operations and the Defense Analyst</b><br/>Splunk — 2025</div>
+      </div>
+      <div class="sub">
+        <img src="assets/cert-pirple.jpg" alt="Cyber Security: White-Hat Ethical Hacking" onerror="this.style.display='none'"/>
+        <div class="cap"><b>Cyber Security: White-Hat Ethical Hacking</b><br/>Pirple — 2022</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education">
+    <p class="title">> EDUCATION</p>
+    <div class="edu">
+      <div class="sub">
+        <h3>Bahria University — BS (IT)</h3>
+        <p>Karachi • <b>Cum Laude</b> • CGPA 3.68 • <b>Gold Medalist</b>.</p>
+        <p>Graduated with distinction; top academic excellence award.</p>
+      </div>
+      <div class="sub">
+        <h3>Highlights</h3>
+        <div class="pills">
+          <span class="pill">System Security</span><span class="pill">Networks</span><span class="pill">Programming</span><span class="pill">Database</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="title">> INITIATE CONTACT</p>
+    <div class="sub">
+      <p><b>Email:</b> <a href="mailto:abdullahjadoon75@gmail.com">abdullahjadoon75@gmail.com</a></p>
+      <p><b>Phone:</b> +92 326 0726238</p>
+      <p><b>Location:</b> Karachi, Pakistan</p>
+      <p><a href="https://github.com/abdullahjadoon34" target="_blank" rel="noopener">github.com/abdullahjadoon34</a>  |  <a href="https://linkedin.com/in/abdullah-k-jadoon" target="_blank" rel="noopener">linkedin.com/in/abdullah-k-jadoon</a></p>
+    </div>
+  </section>
+
+  <footer style="color:#ffbcbc;margin:28px 0">© 2025 Abdullah Jadoon — Redroom</footer>
+</main>
+</body>
+</html>
