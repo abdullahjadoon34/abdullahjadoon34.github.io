@@ -1,34 +1,222 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abdullah Jadoon — Portfolio Styles</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
-<style>
-body{margin:0;background:#0b0e12;color:#e8eef5;font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
-.header{padding:26px 6vw;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #1b2230}
-.grid{padding:36px 6vw;display:grid;gap:22px;grid-template-columns:repeat(3,minmax(0,1fr))}
-.card{background:#0e131a;border:1px solid #1a2330;border-radius:14px;padding:18px;text-decoration:none;color:#cfe2f8}
-.card:hover{outline:1px solid #2b9df7}
-.card h3{margin:.4em 0}
-.card p{color:#9fb6cd;min-height:4.8em}
-</style></head>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Abdullah Jadoon — Portfolio Hub</title>
+  <link rel="preload" as="image" href="assets/personal-hero-1.jpg">
+  <link rel="preload" as="image" href="assets/personal-hero-2.jpg">
+  <link rel="preload" as="image" href="assets/cert-iso27001.jpg">
+  <meta name="theme-color" content="#0b0e12" />
+  <style>
+    :root{
+      --bg:#0b0e12; --panel:#0f141b; --muted:#a7b3c2; --text:#e7edf4;
+      --accent:#2ea8ff; --accent-2:#00ff94; --ring:#2a3442; --glass:rgba(255,255,255,.04)
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0; font:15px/1.55 Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;
+      color:var(--text); background:radial-gradient(80% 60% at 50% -10%, #14202c, var(--bg) 40%) fixed;
+      overflow-x:hidden;
+    }
+    /* dotted grid */
+    .grid{
+      position:fixed; inset:-200vh -200vw; pointer-events:none; opacity:.12; filter:contrast(110%);
+      background:
+        radial-gradient(#2a3442 1px, transparent 1.5px) 0 0/18px 18px,
+        radial-gradient(#2a3442 1px, transparent 1.5px) 9px 9px/18px 18px;
+      mask:radial-gradient(circle at 50% -20%,rgba(0,0,0,.7),rgba(0,0,0,0) 60%);
+    }
+    header{
+      position:sticky; top:0; z-index:10; backdrop-filter:saturate(120%) blur(8px);
+      background:linear-gradient(to bottom, rgba(11,14,18,.9), rgba(11,14,18,.4));
+      border-bottom:1px solid #16202b;
+    }
+    .bar{
+      max-width:1180px; margin:auto; padding:14px 20px; display:flex; gap:18px; align-items:center;
+    }
+    .dot{width:8px;height:8px;border-radius:50%;background:#13d16b;box-shadow:0 0 12px #13d16b}
+    .brand{font-weight:700; letter-spacing:.2px}
+    nav{margin-left:auto; display:flex; gap:14px; align-items:center; font-size:14px}
+    nav a{color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:8px}
+    nav a:hover{color:var(--text); background:var(--glass); outline:1px solid #1d2733}
+
+    main{max-width:1180px; margin:28px auto 80px; padding:0 20px}
+    .hero{
+      display:grid; grid-template-columns:1.4fr 1fr; gap:26px; align-items:stretch;
+      margin-bottom:26px;
+    }
+    .hero-card{
+      background:linear-gradient(180deg, #0e1319 0%, #0b0e12 100%);
+      border:1px solid #182430; border-radius:22px; overflow:hidden; position:relative;
+      box-shadow:0 10px 40px rgba(0,0,0,.35), inset 0 1px 0 #1a2633;
+    }
+    .hero-card .badge{
+      position:absolute; left:18px; bottom:18px; padding:10px 14px;
+      background:linear-gradient(90deg, rgba(27,231,143,.18), rgba(46,168,255,.18));
+      border:1px solid #1e3b2f; border-radius:14px; backdrop-filter:blur(8px);
+      font-weight:600; letter-spacing:.2px
+    }
+    .hero-card img{width:100%; height:100%; object-fit:cover; display:block; opacity:.92; transform:scale(1.01)}
+    .hero-panel{
+      padding:24px; border-radius:22px; border:1px solid #182430; background:rgba(21,28,36,.7);
+      display:flex; flex-direction:column; justify-content:space-between; gap:20px
+    }
+    .kicker{font:600 12px/1.2 "JetBrains Mono", ui-monospace, monospace; color:#9ab4cc; letter-spacing:.25ch}
+    h1{margin:8px 0 6px; font-weight:800; font-size:32px; line-height:1.15}
+    .sub{color:var(--muted)}
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap}
+    .btn{
+      padding:10px 14px; border-radius:12px; text-decoration:none; font-weight:700;
+      border:1px solid #1a2836; color:var(--text); background:#11161c;
+    }
+    .btn.primary{background:linear-gradient(180deg, #2ea8ff, #1b7dd6); border-color:#1b7dd6; color:#041018}
+    .btn:hover{filter:brightness(1.06)}
+    /* launcher tiles */
+    .tiles{display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:18px}
+    .tile{
+      position:relative; overflow:hidden; border-radius:20px; min-height:260px;
+      border:1px solid #1a2733; box-shadow:0 6px 30px rgba(0,0,0,.25); transform:translateZ(0);
+      background:#0f141b;
+    }
+    .tile > img{position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.88; transition:transform .6s ease}
+    .tile:after{content:""; position:absolute; inset:0; background:linear-gradient(180deg, transparent, rgba(0,0,0,.65));}
+    .tile:hover > img{transform:scale(1.06)}
+    .tile .label{
+      position:absolute; left:16px; bottom:16px; right:16px; z-index:2;
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+    }
+    .pill{
+      background:rgba(255,255,255,.08); border:1px solid #1e2b39; padding:8px 12px; border-radius:999px;
+      font-weight:700; letter-spacing:.2px; text-shadow:0 1px 0 rgba(0,0,0,.35)
+    }
+    .go{
+      padding:8px 12px; border-radius:10px; background:linear-gradient(180deg, #2ea8ff, #1578d2);
+      color:#041018; font-weight:800; text-decoration:none; border:1px solid #1466b1
+    }
+    .meta{display:flex; gap:10px; flex-wrap:wrap; margin-top:10px}
+    .chip{border:1px solid #1a2836; padding:6px 10px; border-radius:999px; color:#a9bbcf; background:rgba(255,255,255,.03)}
+    footer{max-width:1180px; margin:40px auto 60px; padding:0 20px; color:#8fa3b7}
+    .kbd{padding:.1rem .45rem; border:1px solid #243244; background:#0d131a; border-radius:6px; font-family:"JetBrains Mono",monospace; font-size:.85em}
+    @media (max-width: 980px){
+      .hero{grid-template-columns:1fr}
+      .tiles{grid-template-columns:1fr; gap:14px}
+      h1{font-size:26px}
+    }
+  </style>
+</head>
 <body>
-<div class="header">
-  <div style="font-weight:900">Abdullah Jadoon — Portfolio Styles</div>
-  <nav><a href="federico.html">Federico</a> • <a href="hacker.html">Hacker</a> • <a href="redroom.html">Redroom</a></nav>
-</div>
-<div class="grid">
-  <a class="card" href="federico.html">
-    <h3>Federico — Cinematic</h3>
-    <p>Full‑screen hero with personal photo, concise mission log, projects, skills, and certifications.</p>
-  </a>
-  <a class="card" href="hacker.html">
-    <h3>Hacker — CRT</h3>
-    <p>Neon‑green console style with boot panels and grid of missions/projects/certificates.</p>
-  </a>
-  <a class="card" href="redroom.html">
-    <h3>Redroom — Monochrome</h3>
-    <p>Minimal red‑washed portrait with strong typographic sections and certificate gallery.</p>
-  </a>
-</div>
-</body></html>
+  <div class="grid" aria-hidden="true"></div>
+
+  <header>
+    <div class="bar" role="navigation" aria-label="top">
+      <div class="dot" aria-hidden="true"></div>
+      <div class="brand">Abdullah Jadoon — Portfolio Hub</div>
+      <nav>
+        <a href="federico.html" title="Cinematic style [1]">Federico</a>
+        <a href="hacker.html" title="Hacker CRT style [2]">Hacker</a>
+        <a href="redroom.html" title="Redroom style [3]">Redroom</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- Above-the-fold: personal hero + elevator pitch -->
+    <section class="hero" aria-label="intro">
+      <figure class="hero-card" aria-label="Abdullah photo">
+        <img src="assets/personal-hero-1.jpg" alt="Abdullah Jadoon portrait in Karachi waterfront" />
+        <figcaption class="badge">Security Architect • Karachi</figcaption>
+      </figure>
+
+      <div class="hero-panel">
+        <div>
+          <div class="kicker">PROFILE</div>
+          <h1>Senior IT Support Officer &amp; Security Specialist</h1>
+          <p class="sub">
+            Proven in managing and securing healthcare IT infrastructure. I keep critical systems
+            available, enforce robust security protocols, and drive resilience—augmented by
+            vulnerability research and automation work.
+          </p>
+        </div>
+        <div class="cta-row">
+          <a class="btn primary" href="federico.html">Open Cinematic</a>
+          <a class="btn" href="hacker.html">Open Hacker</a>
+          <a class="btn" href="redroom.html">Open Redroom</a>
+          <div class="meta" aria-label="quick stats">
+            <span class="chip">Gold Medalist</span>
+            <span class="chip">ISO 27001</span>
+            <span class="chip">MERN + Ops</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Launch tiles -->
+    <section aria-label="launchers" class="tiles">
+      <!-- Federico -->
+      <article class="tile" aria-labelledby="t1">
+        <img src="assets/personal-hero-2.jpg" alt="">
+        <div class="label">
+          <div>
+            <div id="t1" class="pill">Federico — Cinematic</div>
+            <div class="meta">
+              <span class="chip">Full-screen hero</span>
+              <span class="chip">Projects, Missions, Certs</span>
+            </div>
+          </div>
+          <a class="go" href="federico.html" aria-label="Open Federico style">Enter</a>
+        </div>
+      </article>
+
+      <!-- Hacker -->
+      <article class="tile" aria-labelledby="t2">
+        <img src="assets/cert-iso27001.jpg" alt="Abstract background">
+        <div class="label">
+          <div>
+            <div id="t2" class="pill">Hacker — CRT</div>
+            <div class="meta">
+              <span class="chip">Neon console</span>
+              <span class="chip">Boot panels &amp; grid</span>
+            </div>
+          </div>
+          <a class="go" href="hacker.html" aria-label="Open Hacker style">Enter</a>
+        </div>
+      </article>
+
+      <!-- Redroom -->
+      <article class="tile" aria-labelledby="t3">
+        <img src="assets/personal-hero-1.jpg" alt="">
+        <div class="label">
+          <div>
+            <div id="t3" class="pill">Redroom — Monochrome</div>
+            <div class="meta">
+              <span class="chip">Bold silhouette</span>
+              <span class="chip">Gallery &amp; details</span>
+            </div>
+          </div>
+          <a class="go" href="redroom.html" aria-label="Open Redroom style">Enter</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      Tips: press <span class="kbd">1</span> for Cinematic, <span class="kbd">2</span> for Hacker,
+      <span class="kbd">3</span> for Redroom • Valid HTML • Accessible landmarks • Deferred images preloaded.
+    </p>
+    <p>© 2025 Abdullah Jadoon</p>
+  </footer>
+
+  <script>
+    // Keyboard shortcuts for instant style switching
+    addEventListener('keydown', (e)=>{
+      if(['INPUT','TEXTAREA','SELECT'].includes((document.activeElement||{}).tagName)) return;
+      if(e.key==='1') location.href='federico.html';
+      if(e.key==='2') location.href='hacker.html';
+      if(e.key==='3') location.href='redroom.html';
+    });
+  </script>
+</body>
+</html>
